@@ -315,45 +315,12 @@ div.tocify {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">Marcus R Training</a>
+      <a class="navbar-brand" href="index.html">r4dss24</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
   <a href="index.html">Getting Started</a>
-</li>
-<li>
-  <a href="resources.html">Resources</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Sessions
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="01_session.html">Session 1</a>
-    </li>
-    <li>
-      <a href="02_session.html">Session 2</a>
-    </li>
-    <li>
-      <a href="03_session.html">Session 3</a>
-    </li>
-    <li>
-      <a href="04_session.html">Session 4</a>
-    </li>
-    <li>
-      <a href="05_session.html">Session 5</a>
-    </li>
-    <li>
-      <a href="06_session.html">Session 6</a>
-    </li>
-    <li>
-      <a href="07_session.html">Session 7</a>
-    </li>
-  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -407,12 +374,11 @@ scale_color_manual(values = c(&quot;1-lightgray&quot; = &quot;lightgray&quot;,
 theme_minimal() +
 labs(x = &quot;Age in days&quot;, 
      title = &quot;Cloudbuddy volume over time&quot;)</code></pre>
-<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula =
-## &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula = &#39;y ~ s(x, bs =
+## &quot;cs&quot;)&#39;</code></pre>
 <pre><code>## Warning: Removed 10 rows containing non-finite values
 ## (`stat_smooth()`).</code></pre>
-<pre><code>## Warning: Removed 10 rows containing missing values
-## (`geom_point()`).</code></pre>
+<pre><code>## Warning: Removed 10 rows containing missing values (`geom_point()`).</code></pre>
 <p><img src="hw4-exercise1_files/figure-html/scatterplot-1.png" width="672" /></p>
 <p><strong>Histograms by phase</strong></p>
 <pre class="r"><code>ggplot(data = cb_data,
@@ -429,8 +395,7 @@ labs(x = &quot;Age in days&quot;,
                                &quot;4-orange&quot; = &quot;orange&quot;,
                                &quot;5-orangered&quot; = &quot;orangered&quot;,
                                &quot;6-red&quot; = &quot;red&quot;))</code></pre>
-<pre><code>## Warning: Removed 10 rows containing non-finite values
-## (`stat_bin()`).</code></pre>
+<pre><code>## Warning: Removed 10 rows containing non-finite values (`stat_bin()`).</code></pre>
 <p><img src="hw4-exercise1_files/figure-html/facets-1.png" width="672" /></p>
 <p><strong>Age in days</strong></p>
 <pre class="r"><code>ggplot(cb_data, 
@@ -442,42 +407,43 @@ labs(x = &quot;Age in days&quot;,
               color = &quot;black&quot;) +
   theme_minimal() +
   labs(x = &quot;Age in days&quot;)</code></pre>
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula
-## = &#39;y ~ x&#39;</code></pre>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y ~ x&#39;</code></pre>
 <pre><code>## Warning: Removed 10 rows containing non-finite values
 ## (`stat_smooth()`).</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric,
-## : Chernobyl! trL&gt;n 6
+<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : Chernobyl! trL&gt;n 6
 
-## Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric,
-## : Chernobyl! trL&gt;n 6</code></pre>
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : Chernobyl! trL&gt;n 6</code></pre>
 <pre><code>## Warning in sqrt(sum.squares/one.delta): NaNs produced</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric,
-## : span too small.  fewer data values than degrees of freedom.</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric,
-## : pseudoinverse used at 0.56</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric,
-## : neighborhood radius 45.44</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric,
-## : reciprocal condition number 0</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric,
-## : There are other near singularities as well. 1887</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric,
-## : Chernobyl! trL&gt;n 6
+<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : span too small.  fewer data values than degrees of
+## freedom.</code></pre>
+<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : pseudoinverse used at 0.56</code></pre>
+<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : neighborhood radius 45.44</code></pre>
+<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : reciprocal condition number 0</code></pre>
+<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : There are other near singularities as well. 1887</code></pre>
+<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : Chernobyl! trL&gt;n 6
 
-## Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric,
-## : Chernobyl! trL&gt;n 6</code></pre>
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : Chernobyl! trL&gt;n 6</code></pre>
 <pre><code>## Warning in sqrt(sum.squares/one.delta): NaNs produced</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric,
-## : span too small.  fewer data values than degrees of freedom.</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric,
-## : pseudoinverse used at 0.56</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric,
-## : neighborhood radius 60.44</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric,
-## : reciprocal condition number 0</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric,
-## : There are other near singularities as well. 3299.4</code></pre>
+<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : span too small.  fewer data values than degrees of
+## freedom.</code></pre>
+<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : pseudoinverse used at 0.56</code></pre>
+<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : neighborhood radius 60.44</code></pre>
+<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : reciprocal condition number 0</code></pre>
+<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : There are other near singularities as well. 3299.4</code></pre>
 <p><img src="hw4-exercise1_files/figure-html/linegraph-1.png" width="672" /></p>
 <p><strong>Elderly cloudbuddies</strong></p>
 <p>Future investigations may choose to focus on the elderly population
