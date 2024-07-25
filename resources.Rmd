@@ -1,0 +1,59 @@
+---
+title: "Resources"
+---
+
+Here you can find links to the reference text and other helpful guides and examples.
+
+### Textbook: R for Data Science
+
+[R for Data Science](https://r4ds.had.co.nz/) is a **free** online text by Hadley Wickham and Garrett Grolemund. This is our workshop textbook. We won't use this book chapter by chapter necessarily, but we will base many of our exercises off of this text.
+
+[![](https://d33wubrfki0l68.cloudfront.net/b88ef926a004b0fce72b2526b0b5c4413666a4cb/24a30/cover.png){width=25%}](https://r4ds.had.co.nz/)
+
+### Posit Cheatsheets
+
+[Here](https://posit.co/resources/cheatsheets/) you can find a collection of cheatsheets for different aspects of coding in R and and working in RStudio. 
+
+
+### TidyTuesday
+An interesting and new data set each week to practice transforming and plotting.
+
+https://github.com/rfordatascience/tidytuesday
+
+
+### Data Visualization
+
+Claus O. Wilke has written a free book on Data Visualization in R. Check it out [here](https://clauswilke.com/dataviz/).
+
+
+### How popular is R?
+
+The link below will bring you to an article describing data on the popularity of a variety of data analysis software programs.
+
+https://r4stats.com/articles/popularity/
+
+
+### Teacups, Giraffes, & Statistics
+
+https://tinystats.github.io/teacups-giraffes-and-statistics/
+
+
+### Cloudbuddy data
+
+We will have the privilege to work with data on a newly discovered being: Cloudbuddies. Cloudbuddies were first discovered in 2013 and for a decade they have been a source of confusion and frustration in the scientific community, due to, among other things, the fact that they seem to be a living, breathing, inexplicable mix of Altocumulus clouds and Cloudberries. Not much is known about Cloudbuddies and currently data is rather limited, but over the course of the next months more and more information will be collected and shared with us for analysis. 
+
+<br>
+
+<center>
+
+![](image0.png){#id .class width=80% height=80%, }
+
+</center>
+
+<!-- ### Other websites -->
+
+<!-- All of the links below are sites built using R.  -->
+
+<!-- * A book: https://smltar.com/ -->
+<!-- * A blog: http://desiree.rbind.io/ -->
+<!-- * A project site: https://www.tidymodels.org/ -->

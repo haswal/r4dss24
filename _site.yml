@@ -1,0 +1,34 @@
+name: ""
+output_dir: "docs"
+navbar:
+  title: "r4dss24"
+  left:
+    - text: "Getting Started"
+      href: index.html
+    # - text: "Resources"
+    #   href: resources.html
+    # - text: "Sessions"
+    #   menu:
+    #     - text: "Session 1"
+    #       href: 01_session.html
+    #     - text: "Session 2"
+    #       href: 02_session.html
+    #     - text: "Session 3"
+    #       href: 03_session.html
+    #     - text: "Session 4"
+    #       href: 04_session.html
+    #     - text: "Session 5"
+    #       href: 05_session.html
+    #     - text: "Session 6"
+    #       href: 06_session.html
+    #     - text: "Session 7"
+    #       href: 07_session.html
+
+output: 
+  html_document: 
+    theme: flatly
+    toc: TRUE
+    toc_float: true
+    toc_depth: 3
+    number_sections: FALSE
+    css: style.css

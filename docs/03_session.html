@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+<meta name="date" content="2023-08-10" />
+
+<title>Session 3</title>
+
+<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Marcus R Training</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Getting Started</a>
+</li>
+<li>
+  <a href="resources.html">Resources</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Sessions
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="01_session.html">Session 1</a>
+    </li>
+    <li>
+      <a href="02_session.html">Session 2</a>
+    </li>
+    <li>
+      <a href="03_session.html">Session 3</a>
+    </li>
+    <li>
+      <a href="04_session.html">Session 4</a>
+    </li>
+    <li>
+      <a href="05_session.html">Session 5</a>
+    </li>
+    <li>
+      <a href="06_session.html">Session 6</a>
+    </li>
+    <li>
+      <a href="07_session.html">Session 7</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Session 3</h1>
+<h4 class="date">August 10, 2023</h4>
+
+</div>
+
+
+<div id="agenda" class="section level2">
+<h2>Agenda</h2>
+<ul>
+<li>Data transformation using the <code>dplyr</code> package</li>
+<li>Pick observations by their values with <code>filter()</code></li>
+<li>Pick variables by their names with <code>select()</code></li>
+<li>Reorder rows using <code>arrange()</code></li>
+<li>Introducing the pipe (<code>%&gt;%</code>) operator</li>
+</ul>
+</div>
+<div id="script" class="section level2">
+<h2>Script</h2>
+<p>You can download the script from session 3 by clicking the link
+below.</p>
+<!-- to add scripts -->
+<a href="data:text/plain;base64,I0xvYWRpbmcgbGlicmFyaWVzIApsaWJyYXJ5KHRpZHl2ZXJzZSkKbGlicmFyeShyZWFkeGwpCgojUmVhZGluZyBpbiBkYXRhIHBlciB1c3VhbApjYl9kYXRhIDwtIHJlYWRfeGxzeChwYXRoID0gIkNCX2RhdGFfMjAyMy54bHN4IiwKICAgICAgICAgICAgICAgICAgICAgc2tpcCA9IDExLAogICAgICAgICAgICAgICAgICAgICBuYSA9ICItOTkiKQoKI0ZvciBhbGwgZHBseXIgZnVuY3Rpb25zICh2ZXJicyk6ICAKIy1GaXJzdCBhcmd1bWVudCBpcyBkYXRhCiMtU3Vic2VxdWVudCBhcmd1bWVudHMgZGVzY3JpYmUgd2hhdCB0byBkbwojLVJlc3VsdCBpcyBhIG5ldyBkYXRhIGZyYW1lCiNIZXJlIHVzaW5nIGZpbHRlcigpIHRvIHN1YnNldCAocm93cykgb24gT2JzZXJ2ZXIgcmFJRC0wNwpmaWx0ZXIoY2JfZGF0YSwKICAgICAgIE9ic2VydmVyID09ICJyYUlELTA3IikKCiNUcmFuc2Zvcm1pbmcgZGF0YSBvZnRlbiBpbnZvbHZlcyBtYW55IGRwbHlyIHZlcmJzCiNCZXN0IHdheSB0byBzdHJpbmcgUiBjb21tYW5kcyB0b2dldGhlciBpcyB0byB1c2UgcGlwZTogJT4lIAojS2V5Ym9hcmQgc2hvcnRjdXQ6IGNtZCtzaGlmdCttCiNXaGVuIHVzaW5nIHRoZSBwaXBlLCB0YWJiaW5nIGlzIHJlYWxseSB1c2VmdWwKY2JfZGF0YSAlPiUgCiAgZmlsdGVyKE9ic2VydmVyID09ICJyYUlELTA3IikKCiNQaXBlIHRvIGZpbHRlciwgdGhlbiB2aWV3KCkKY2JfZGF0YSAlPiUgCiAgZmlsdGVyKE9ic2VydmVyID09ICJyYUlELTA3IikgJT4lIAogIHZpZXcoKQoKI1BpcGUgdG8gZmlsdGVyLCB0aGVuIGdncGxvdApjYl9kYXRhICU+JSAKICBmaWx0ZXIoT2JzZXJ2ZXIgPT0gInJhSUQtMDciKSAlPiUgCiAgZ2dwbG90KGFlcyh4ID0gQWdlX2luX2RheXMsCiAgICAgICAgICAgICAgeSA9IFdlaWdodCkpICsKICBnZW9tX3BvaW50KCkKCiNGaWx0ZXIgdXNlcyBjb25kaXRpb25zOiA9PSwgIT0sID4sIDwsID49LCA8PQojQWxsIE9ic2VydmVycyBCVVQgcmFJRC0wNwpjYl9kYXRhICU+JSAKICBmaWx0ZXIoT2JzZXJ2ZXIgIT0gInJhSUQtMDciKSAlPiUgCiAgZ2dwbG90KGFlcyh4ID0gQWdlX2luX2RheXMsCiAgICAgICAgICAgICB5ID0gV2VpZ2h0KSkgKwogIGdlb21fcG9pbnQoYWVzKGNvbG9yID0gT2JzZXJ2ZXIpKQoKI0FnZXMgZ3JlYXRlciB0aGFuIDUwIGRheXMgKGluY2x1c2l2ZSkKY2JfZGF0YSAlPiUgCiAgZmlsdGVyKEFnZV9pbl9kYXlzID49IDUwKSAlPiUgCiAgZ2dwbG90KGFlcyh4ID0gQWdlX2luX2RheXMsCiAgICAgICAgICAgICB5ID0gV2VpZ2h0KSkgKwogIGdlb21fcG9pbnQoKQoKI0ZpbHRlciB1c2luZyBtdWx0aXBsZSBjb25kaXRpb25zCmNiX2RhdGEgJT4lIAogIGZpbHRlcihBZ2VfaW5fZGF5cyA+PSA1MCwgCiAgICAgICAgIE9ic2VydmVyICE9ICJyYUlELTA3IikgJT4lIAogIGdncGxvdChhZXMoeCA9IEFnZV9pbl9kYXlzLAogICAgICAgICAgICAgeSA9IFdlaWdodCkpICsKICBnZW9tX3BvaW50KCkKCiNTZXBhcmF0aW5nIGNvbmRpdGlvbnMgd2l0aCBjb21tYSBzYW1lIGFzIHVzaW5nICImIgoKY2JfZGF0YSAlPiUgCiAgZmlsdGVyKEFnZV9pbl9kYXlzID49IDUwICYKICAgICAgICAgICBPYnNlcnZlciAhPSAicmFJRC0wNyIpICU+JSAKICBnZ3Bsb3QoYWVzKHggPSBBZ2VfaW5fZGF5cywKICAgICAgICAgICAgIHkgPSBXZWlnaHQpKSArCiAgZ2VvbV9wb2ludCgpCgojVXNlIGxvZ2ljYWwgT1IgKHwpIHRvIGNoZWNrIGZvciBlaXRoZXIgY29uZGl0aW9uCmNiX2RhdGEgJT4lIAogIGZpbHRlcihDbG91ZGJ1ZGR5ID09ICJjYklELTAwMSIgfAogICAgICAgICAgIENsb3VkYnVkZHkgPT0gImNiSUQtMDAyIikKCiNTaG9ydGN1dDogJWluJSAKY2JfZGF0YSAlPiUgCiAgZmlsdGVyKENsb3VkYnVkZHkgJWluJSBjKCJjYklELTAwMSIsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICJjYklELTAwMiIpKQoKI0NhbiBhbHNvIGJlIHVzZWQgd2l0aCAiISIKY2JfZGF0YSAlPiUgCiAgZmlsdGVyKCFDbG91ZGJ1ZGR5ICVpbiUgYygiY2JJRC0wMDEiLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgImNiSUQtMDAyIikpCgojQ2Fubm90IHVzZSB2YXJpYWJsZSA9PSBOQSwgbXVzdCB1c2UgaXMubmEoKQpjYl9kYXRhICU+JSAKICBmaWx0ZXIoVm9sdW1lID09IE5BKQoKY2JfZGF0YSAlPiUgCiAgZmlsdGVyKGlzLm5hKFZvbHVtZSkpCgpjYl9kYXRhICU+JSAKICBmaWx0ZXIoIWlzLm5hKFZvbHVtZSkpCgojZHBseXIgdmVyYnMgd2lsbCBub3Qgc2F2ZSBuZXcgZGF0YSwgYXNzaWduIHRvIHNhdmUKY2JfZGF0YV9uZXcgPC0gY2JfZGF0YSAlPiUgCiAgZmlsdGVyKENsb3VkYnVkZHkgJWluJSBjKCJjYklELTAwMSIsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICJjYklELTAwMiIpKSAKCiNOZXh0IHZlcmIgaXMgYXJyYW5nZSAKI1dpbGwgYXJyYW5nZSBhIGNvbHVtbidzIHZhbHVlcyBpbiBhc2NlbmRpbmcgb3JkZXIgYnkgZGVmYXVsdApjYl9kYXRhICU+JSAKICBhcnJhbmdlKFZvbHVtZSkKCiNUbyB2aWV3IGluIGRlc2NlbmRpbmcgb3JkZXIsIHVzZSBkZXNjKCkKY2JfZGF0YSAlPiUgCiAgYXJyYW5nZShkZXNjKFZvbHVtZSkpCgojVXNlIHNlbGVjdCgpIHRvIHBpY2sgY29sdW1ucyBpbiBkYXRhCiNDYW4gYmUgZG9uZSBieSBuYW1lCiNPdXRwdXQgb3JkZXJlZApjYl9kYXRhICU+JSAKICBzZWxlY3QoV2VpZ2h0LCAKICAgICAgICAgVm9sdW1lLCAKICAgICAgICAgQ2xvdWRidWRkeSkKCiNPciByYW5nZSBvZiBuYW1lcyAKY2JfZGF0YSAlPiUgCiAgc2VsZWN0KEFnZV9pbl9kYXlzOmBQaGFzZSAoY29sb3IpYCkKCiNPciBleGNsdWRlIHJhbmdlCmNiX2RhdGEgJT4lIAogIHNlbGVjdCghQWdlX2luX2RheXM6YFBoYXNlIChjb2xvcilgKQoKI09yIGhlbHBlciBmdW5jdGlvbnMKY2JfZGF0YSAlPiUgCiAgc2VsZWN0KHN0YXJ0c193aXRoKCJXIikpCgpjYl9kYXRhICU+JSAKICBzZWxlY3QoY29udGFpbnMoIl8iKSkKCiNCeSB2YXJpYWJsZSB0eXBlCmNiX2RhdGEgJT4lIAogIHNlbGVjdCh3aGVyZShpcy5udW1lcmljKSkKCmNiX2RhdGEgJT4lIAogIHNlbGVjdCh3aGVyZShpcy5jaGFyYWN0ZXIpKQoKI1VzZSByZW5hbWUoKSB0byByZW5hbWUgY29sdW1ucyAodmFyaWFibGVzKQojbmV3X25hbWUgPSBvbGRfbmFtZQpjYl9kYXRhICU+JSAKICByZW5hbWUoUGhhc2UgPSBgUGhhc2UgKGNvbG9yKWApCgo=" download="session_03.R">Download session_03.R</a>
+</div>
+<div id="cheatsheets" class="section level2">
+<h2>Cheatsheets</h2>
+<ul>
+<li><a
+href="https://rstudio.github.io/cheatsheets/data-transformation.pdf">dplyr</a></li>
+</ul>
+</div>
+<div id="resources" class="section level2">
+<h2>Resources</h2>
+<p>Most of what we talk about this time will be based off of Chapter 5,
+sections 5.2 - 5.4 in the R4DS textbook. Chapter 18 gives more detail
+about the pipe.</p>
+</div>
+<div id="homework-exercises" class="section level2">
+<h2>Homework Exercises</h2>
+<p>The homework exercises for this week are below. Use the same data as
+last two weeks when working through the exercises. Make sure you use the
+keyboard shortcut (cmd+shift+m) every time you input the pipe.</p>
+<ol style="list-style-type: decimal">
+<li><p>Fix the code below so that it runs without error.</p>
+<pre class="r"><code>cb_data %&gt;% 
+  filter(Cloudbuddy = &quot;cbID-007&quot;)</code></pre></li>
+<li><p>Recreate the R code necessary to generate the plot below.</p>
+<p><img src="03_session_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p></li>
+<li><p>How many observations are there in <code>cb_data</code> where the
+cloudbuddy Volume is less or equal to one.</p></li>
+<li><p>Use <code>arrange()</code> to show how many cloudbuddies there
+are in <code>cb_data</code>.</p></li>
+<li><p>Many times when working with data, we need to use multiple
+different functions to achieve the desired end goal. One option is to
+create intermediate objects for each step of the analysis process, as
+can be seen below. A better alternative is to use the pipe
+<code>%&gt;%</code> and link together different functions. Use the pipe
+method to convert the code below to a pipeline.</p>
+<pre class="r"><code>cb_data_2 &lt;- filter(cb_data,
+                `Phase (color)` %in% c(&quot;1-lightgray&quot;,
+                                       &quot;6-red&quot;
+                                       ))
+cb_data_3 &lt;- select(cb_data_2, 
+                    `Phase (color)`,
+                    Volume)
+
+cb_data_4 &lt;- arrange(cb_data_3,
+                     desc(Volume))
+
+cb_data_5 &lt;- rename(cb_data_4,
+                    Phase = `Phase (color)`)
+
+view(cb_data_5)</code></pre></li>
+<li><p>Find all observations where the cloudbuddy Weight is more than
+ten times the Volume.</p></li>
+<li><p>Run the code below and explain why the result looks the way it
+does. What would you change to achieve more meaningful output?</p>
+<pre class="r"><code>cb_data %&gt;% 
+  filter(Observer == &quot;raID-01&quot;, 
+         Observer == &quot;raID-02&quot;)</code></pre></li>
+<li><p>How many observations have a Weight greater than 4 but less than
+5.</p></li>
+<li><p>Are there any observations in <code>cb_data</code> where both
+Weight and Volume are missing? Can you find the answer in more than one
+way?</p></li>
+<li><p>Find the youngest age for which Volume is greater than 6. Does it
+matter what order you use the functions?</p></li>
+<li><p>Run the code below. Does the result surprise you? How do the
+select helpers deal with upper and lower case by default? How can you
+change that default?</p>
+<pre class="r"><code>cb_data %&gt;% 
+  select(contains(&quot;DAYS&quot;))</code></pre></li>
+<li><p>Select all numeric columns in <code>cb_data</code> using at least
+three different ways.</p></li>
+<li><p>Create an analysis pipeline that first picks the first five
+cloudbuddies (based on how cloudbuddies are numbered) and the last three
+phases, then changes the <code>Age_in_days</code> variable name to
+<code>Age</code>, then orders the data by <code>Weight</code> (ascending
+order), then selects the <code>Age</code>, <code>Weight</code> and
+<code>Phase (color)</code> columns, and finally shows the data using
+<code>view()</code>.</p></li>
+</ol>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
