@@ -1,7 +1,7 @@
 ---
 title: "Marcus R Training"
 author: ["Instructor: Hasse Walum (hasse.walum@emory.edu)", 
-"TA: Aiden Ford (aiden.l.ford@emory.edu)"]
+"Teaching Assistant: Dylan Douglas-Brown (josie.d.douglas-brown@emory.edu)"]
 output:
   html_document:
     css: [home.css, style.css]
@@ -18,8 +18,8 @@ Before we can get started we need to install **two** different software programs
 #### Start by installing R:
 
 * Go to [cran.r-project.org](https://cran.r-project.org)
-    + Windows users click **Download R for Windows** and on the next page **install R for the first time** and finally **Download R -4.3.1 for Windows**.
-    + Mac users click **Download R for macOS** and on the next page pick the version matching the OS version you are using (for most users **R-4.3.1-x86_64.pkg** will be the right choice, unless you are working on a fancy new M1 or M2 mac in which case pick **R-4.3.1-arm64.pkg** instead).
+    + Windows users click **Download R for Windows** and on the next page **install R for the first time** and finally **Download R -4.4.1 for Windows**.
+    + Mac users click **Download R for macOS** and on the next page pick the version matching the OS version you are using (today many users will be working on a machine with Apple silicon (M1-3) and in this case **R-4.4.1-arm64.pkg** will be the right choice. If you are using an older Mac with an Intel processor, choose  **R-4.4.1-x86_64.pkg** instead).
 
 #### Next we will install RStudio:
 
