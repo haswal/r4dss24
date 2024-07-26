@@ -1,7 +1,7 @@
 ---
 title: "Marcus R Training"
 author: ["Instructor: Hasse Walum (hasse.walum@emory.edu)", 
-"Teaching Assistant: Dylan Douglas-Brown (josie.d.douglas-brown@emory.edu)"]
+"Teaching Assistant: Dylan Douglas-Brown (jddoug3@emory.edu)"]
 output:
   html_document:
     css: [home.css, style.css]
