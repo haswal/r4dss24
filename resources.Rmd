@@ -6,7 +6,7 @@ Here you can find links to the reference text and other helpful guides and examp
 
 ### Textbook: R for Data Science
 
-[R for Data Science](https://r4ds.had.co.nz/) is a **free** online text by Hadley Wickham and Garrett Grolemund. This is our workshop textbook. We won't use this book chapter by chapter necessarily, but we will base many of our exercises off of this text.
+[R for Data Science](https://r4ds.had.co.nz/) is a **free** online text by Hadley Wickham and Garrett Grolemund. This is our class textbook. We won't use this book chapter by chapter necessarily, and we won't cover all chapters, but it is a great book with lots of good examples and exercises.
 
 [![](https://d33wubrfki0l68.cloudfront.net/b88ef926a004b0fce72b2526b0b5c4413666a4cb/24a30/cover.png){width=25%}](https://r4ds.had.co.nz/)
 
