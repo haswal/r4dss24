@@ -1,6 +1,6 @@
 ---
 title: "Session 1"
-date: July 27, 2023
+date: August 8, 2024
 output: html_document
 ---
 
@@ -19,23 +19,22 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Script
 
-Here's the script from Session 1. You can download this and save it inside the R Project folder that you created for the class.
+<!-- Here's the script from Session 1. You can download this and save it inside the R Project folder that you created for the class. -->
 
-<!-- to add scripts -->
 
-```{r, include = FALSE, eval = FALSE}
+<!-- ```{r, include = FALSE, eval = FALSE} -->
 
-# install and load these packages
-devtools::install_github('yihui/xfun')
+<!-- # install and load these packages -->
+<!-- devtools::install_github('yihui/xfun') -->
 
-# embed_file() requires a few more packages
-xfun::pkg_load2(c('base64enc', 'htmltools', 'mime'))
-```
+<!-- # embed_file() requires a few more packages -->
+<!-- xfun::pkg_load2(c('base64enc', 'htmltools', 'mime')) -->
+<!-- ``` -->
 
-```{r echo=FALSE}
-# a embed single file
-xfun::embed_file('session_01.R')
-```
+<!-- ```{r echo=FALSE} -->
+<!-- # a embed single file -->
+<!-- xfun::embed_file('session_01.R') -->
+<!-- ``` -->
 
 
 
@@ -58,7 +57,7 @@ The data visualization methods we will cover today is based off of Chapter 3 (se
 
 The homework exercises for this week are below. I suggest that you create a new R script to work through the answers, and save your exercises script in your RStudio Project for the class.
 
-You’ll first need to read in the data the way that we showed during the live session, and call it `cb_data`.
+You'll first need to read in the data the way that we talked about during the live session, and call it `cb_data`.
 
 ```{r, include = FALSE}
 library(tidyverse)
@@ -157,7 +156,7 @@ ggplot(data = cb_data,
 
 1. Assign the "correct" colors to the `Phase (color)` variable in a scatter plot where `x = Age_in_days` and `y = Volume` (meaning that the dots in the scatter plot representing for example `1-lightgray` should have the color `"lightgray"` and so forth). Take a look at [this link](https://www.statology.org/color-by-factor-ggplot2/) (Example 2) to figure out how to manually change the default color scheme.
 
-    Run `?scale_color_manual` in the R console. What happens? Find the paper talking about color vision deficiencies (and read it if you are interested). There is a color scheme in the `ggthemes` package made speficically with color vision deficiencies in mind. Can you find it in the `ggthemes` documentation?
+    Run `?scale_color_manual` in the R console. What happens? Find the paper talking about color vision deficiencies (and read it if you are interested). There is a color scheme in the `ggthemes` package made specifically with color vision deficiencies in mind. Can you find it in the `ggthemes` documentation?
     
     What does the `c()` function do?
     
