@@ -73,15 +73,6 @@ ggplot(data = cb_data,
                      shape = `Phase (color)`)) +
   geom_point()
 
-#Specify aesthetics outside of aes() to change ALL obs
-#Here using "alpha = " to show overplotting
-ggplot(data = cb_data, 
-       mapping = aes(x = Age_in_days,
-                     y = Weight,
-                     color = `Phase (color)`)) +
-  geom_point(alpha = 0.3,
-             shape = 18)
-
 #Divide plot into subplots with facets
 #Facet_wrap takes one variable 
 #Use the tilde character "~" to specify variable
@@ -134,8 +125,7 @@ ggplot(data = cb_data,
 #aes() can be added to geoms instead (local)
 ggplot(data = cb_data, 
        mapping = aes(x = Age_in_days,
-                     y = Weight,
-                     )) +
+                     y = Weight)) +
   geom_point(aes(color = `Phase (color)`)) +
   geom_smooth()
 
@@ -143,8 +133,7 @@ ggplot(data = cb_data,
 #Color names shown with color in RStudio
 ggplot(data = cb_data, 
        mapping = aes(x = Age_in_days,
-                     y = Weight,
-       )) +
+                     y = Weight)) +
   geom_point(aes(color = `Phase (color)`)) +
   geom_smooth(color = "black")
 
@@ -152,8 +141,7 @@ ggplot(data = cb_data,
 #First geom added in code: first to be "drawn"
 ggplot(data = cb_data, 
        mapping = aes(x = Age_in_days,
-                     y = Weight,
-       )) +
+                     y = Weight)) +
   geom_point(color = "white",
              size = 3) +
   geom_point(aes(color = `Phase (color)`))
