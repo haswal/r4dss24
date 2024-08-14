@@ -48,7 +48,7 @@ Most of what we cover today will be based off of Chapter 3, sections 3.7 - 3.10 
 
 Learn more about the features that the `cowplot` packages has to offer [here](https://wilkelab.org/cowplot/index.html). The links under the "articles" dropdown menu are particularly useful, e.g. this [article on aligning plots](https://wilkelab.org/cowplot/articles/aligning_plots.html).
 
-Read about `ggsave()` [here](https://sscc.wisc.edu/sscc/pubs/using-r-plots/saving-plots.html) (2.1).
+Read about `ggsave()` [here](https://sscc.wisc.edu/sscc/pubs/using-r-plots/saving-plots.html). The linked page also contains information about how different file extensions relate to image quality. 
 
 Here are some third-party packages that you may find fun to test out to style your own ggplots:
 
@@ -204,4 +204,4 @@ ggplot(cb_data,
     ```
 
 
-1. Use the cloudbuddy data and ggplot2 to create something you think looks cool. This you could do by styling one of the plots you have already made, finding a combination of different geoms that look good together, layering geoms in a visually pleasing way, or maybe you want to try using one of the many geoms we have not talked about. What you create doesn't have to be an informative data visualization, it is more important that you try something new. Find inspiration among the resources listed on the class website or search the web. Share your creation with the group by posting both the plot (saved as a file) and the code (in a script containing the code for this plot only) in the r4dss24 Slack channel no later than by the end of the day Tuesday August 20th. 
+1. Use the cloudbuddy data and ggplot2 to create something you think looks cool. This you could do by styling one of the plots you have already made, finding a combination of different geoms that look good together, layering geoms in a visually pleasing way, or maybe you want to try using one of the many geoms we have not talked about. What you create doesn't have to be an informative data visualization, it is more important that you try something new. Find inspiration among the resources listed here on the class website or search the web. Share your creation with the group by posting both the plot (saved as a file) and the code (in a script containing the code for this plot only) in the r4dss24 Slack channel no later than by the end of the day Tuesday August 20th. 
