@@ -53,7 +53,7 @@ Read about `ggsave()` [here](https://sscc.wisc.edu/sscc/pubs/using-r-plots/savin
 Here are some third-party packages that you may find fun to test out to style your own ggplots:
 
 * [`wesanderson`](https://github.com/karthik/wesanderson) color palettes
-* [`RcolorBrewer`](https://www.datanovia.com/en/blog/the-a-z-of-rcolorbrewer-palette/) palettes
+* [`RcolorBrewer`](https://www.geeksforgeeks.org/introduction-to-color-palettes-in-r-with-rcolorbrewer/) palettes
 * [`LaCroixColoR`](https://github.com/johannesbjork/LaCroixColoR) color palettes
     * This package is on Github only for now (not CRAN), so it has to be installed with the code below before you can load and use it:
     ```{r, eval = FALSE, echo = TRUE}
