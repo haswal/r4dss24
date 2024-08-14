@@ -1,6 +1,6 @@
 ---
 title: "Session 2"
-date: August 3, 2023
+date: August 15, 2024
 output: html_document
 ---
 
@@ -21,26 +21,26 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Script
 
-You can download the script from session 2 by clicking the link below.
+<!-- You can download the script from session 2 by clicking the link below. -->
 
-<!-- to add scripts -->
-
-
-```{r, include = FALSE, eval = FALSE}
-
-# install and load these packages
-devtools::install_github('yihui/xfun')
-
-# embed_file() requires a few more packages
-xfun::pkg_load2(c('base64enc', 'htmltools', 'mime'))
-```
+<!-- <!-- to add scripts --> -->
 
 
+<!-- ```{r, include = FALSE, eval = FALSE} -->
 
-```{r echo=FALSE}
-# a embed single file
-xfun::embed_file('session_02.R')
-```
+<!-- # install and load these packages -->
+<!-- devtools::install_github('yihui/xfun') -->
+
+<!-- # embed_file() requires a few more packages -->
+<!-- xfun::pkg_load2(c('base64enc', 'htmltools', 'mime')) -->
+<!-- ``` -->
+
+
+
+<!-- ```{r echo=FALSE} -->
+<!-- # a embed single file -->
+<!-- xfun::embed_file('session_02.R') -->
+<!-- ``` -->
 
 ## Resources
 
@@ -119,7 +119,7 @@ ggplot(cb_data,
       theme_bw()
     ```
 
-1. What happens if you create a bar plot using `geom_bar()` and map `x` (and no other aesthetic) to a continuous variable? Think about why the plot looks the ways it does and how it relates to the default behavior of `geom_bar()`.
+1. What happens if you create a bar plot using `geom_bar()` and map `x` (and no other aesthetic) to a continuous variable? Think about why the plot looks the way it does and how it relates to the default behavior of `geom_bar()`.
 
 1. Sometimes when creating plots, the axis labels do not quite fit and there is overlap making the text hard to read. There are a few different ways to fix this. Check out [this link](https://www.statology.org/rotate-axis-labels-ggplot2/) on how to rotate axis labels and recreate the code to make the plot below. What are the `hjust` and `vjust` options used for?  
 
@@ -154,7 +154,7 @@ ggplot(cb_data,
 
 1. What does `geom_jitter()` do? How does it compare to `geom_point()`? Create two plots, one using `geom_jitter()` and one using `geom_point()` (with for example `x = Age_in_days` and `y = Volume`) and put them next to each other using `plot_grid()` from the `cowplot` package. Are there differences between the plots? Try setting `height = 1` in `geom_jitter()` and explain what happens.    
 
-1. Combine multiple skills that you've learned so far (and perhaps a few new things) to recreate the plot below. When setting the histogram colors, remember the name of the aesthetic we use in this case. Read the cowplot documentation to figure out how to combine a plot with facets and plots without. 
+1. Combine multiple skills that you've learned so far (and perhaps a few new things) to recreate the figure below. When setting the histogram colors, remember the name of the aesthetic we use in this case. Read the cowplot documentation to figure out how to combine a plot with facets and plots without. 
 
     ```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.width=6, fig.align="center", fig.height=6}
     library(cowplot)
@@ -202,3 +202,6 @@ ggplot(cb_data,
     
     plot_grid(p1, bottom_row, labels = c('A', ''), ncol = 1)
     ```
+
+
+1. Use the cloudbuddy data and ggplot2 to create something you think looks cool. This you could do by styling one of the plots you have already made, finding a combination of different geoms that look good together, layering geoms in a visually pleasing way, or maybe you want to try using one of the many geoms we have not talked about. What you create doesn't have to be an informative data visualization, it is more important that you try something new. Find inspiration among the resources listed on the class website or search the web. Share your creation with the group by posting both the plot (saved as a file) and the code (in a script containing the code for this plot only) in the r4dss24 Slack channel no later than by the end of the day Tuesday August 20th. 
