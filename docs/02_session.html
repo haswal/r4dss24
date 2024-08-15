@@ -372,19 +372,9 @@ div.tocify {
 </div>
 <div id="script" class="section level2">
 <h2>Script</h2>
-<!-- You can download the script from session 2 by clicking the link below. -->
-<!-- <!-- to add scripts -->
-<p>–&gt;</p>
-<!-- ```{r, include = FALSE, eval = FALSE} -->
-<!-- # install and load these packages -->
-<!-- devtools::install_github('yihui/xfun') -->
-<!-- # embed_file() requires a few more packages -->
-<!-- xfun::pkg_load2(c('base64enc', 'htmltools', 'mime')) -->
-<!-- ``` -->
-<!-- ```{r echo=FALSE} -->
-<!-- # a embed single file -->
-<!-- xfun::embed_file('session_02.R') -->
-<!-- ``` -->
+<p>You can download the script from session 2 by clicking the link
+below.</p>
+<a href="data:text/plain;base64,I0xvYWRpbmcgbGlicmFyaWVzIApsaWJyYXJ5KHRpZHl2ZXJzZSkKbGlicmFyeShyZWFkeGwpCgojUmVhZGluZyBpbiBkYXRhIHRoZSBzYW1lIHdheSBhcyBsYXN0IHRpbWUKY2JfZGF0YSA8LSByZWFkX3hsc3gocGF0aCA9ICJDQl9kYXRhXzIwMjMueGxzeCIsCiAgICAgICAgICAgICAgICAgICAgIHNraXAgPSAxMSwKICAgICAgICAgICAgICAgICAgICAgbmEgPSAiLTk5IikKCiNnZW9tX2hpc3RvZ3JhbSBtYWtlcyBoaXN0b2dyYW1zCiNBIGhpc3RvZ3JhbSBzaG93cyB0aGUgZGlzdHJpYnV0aW9uIG9mIGEgY29udGludW91cyB2YXJpYWJsZQojRGl2aWRlcyBkYXRhIGludG8gYmlucyBhbmQgY291bnRzIGhvdyBtYW55IG9icyBwZXIgYmluCiNIZWlnaHQgb2YgYmFyID0gY291bnQKI09ubHkgc3BlY2lmeSAieCIgYWVzdGhldGljIApnZ3Bsb3QoZGF0YSA9IGNiX2RhdGEsCiAgICAgICBhZXMoeCA9IFZvbHVtZSkpICsKICBnZW9tX2hpc3RvZ3JhbSgpCgojQWRqdXN0IG51bWJlciBvZiBiaW5zIHdpdGggYmlud2lkdGgKZ2dwbG90KGRhdGEgPSBjYl9kYXRhLAogICAgICAgYWVzKHggPSBWb2x1bWUpKSArCiAgZ2VvbV9oaXN0b2dyYW0oYmlud2lkdGggPSAxKQoKI01ha2luZyBhIGJhciBwbG90IHVzaW5nIGdlb21fYmFyCiNXaXRoIG9ubHkgIngiIGFlc3RoZXRpYzsgY291bnRzIG51bWJlciBvZiBvYnMKI1VzZSB3aXRoIGNhdGVnb3JpY2FsIHZhcmlhYmxlCmdncGxvdChkYXRhID0gY2JfZGF0YSwKICAgICAgIGFlcyh4ID0gT2JzZXJ2ZXIpKSArCiAgZ2VvbV9iYXIoKQoKI1VzZSBmY3RfaW5mcmVxKCkgdG8gb3JkZXIgYmFzZWQgb24gY291bnQKZ2dwbG90KGRhdGEgPSBjYl9kYXRhLAogICAgICAgYWVzKHggPSBmY3RfaW5mcmVxKE9ic2VydmVyKSkpICsKICBnZW9tX2JhcigpCgojVXNlIHRoZSBmaWxsIGFlc3RoZXRpYyBmb3IgZXhhbXBsZSB0byBhZGQgYW5vdGhlciB2YXJpYWJsZQojQ29sb3Igb2YgYmFycyBjb250cm9sbGVkIHVzaW5nIHRoZSBmaWxsIGFlc3RoZXRpYwojVGhlIGRlZmF1bHQgc2V0dGluZyBjcmVhdGVzIHN0YWNrZWQgYmFycwpnZ3Bsb3QoZGF0YSA9IGNiX2RhdGEsCiAgICAgICBhZXMoeCA9IGZjdF9pbmZyZXEoT2JzZXJ2ZXIpLAogICAgICAgICAgIGZpbGwgPSBgUGhhc2UgKGNvbG9yKWApKSArCiAgZ2VvbV9iYXIoKQoKI0NvbG9yIGNvbnRyb2xzIG91dGxpbmUKZ2dwbG90KGRhdGEgPSBjYl9kYXRhLAogICAgICAgYWVzKHggPSBmY3RfaW5mcmVxKE9ic2VydmVyKSwKICAgICAgICAgICBmaWxsID0gYFBoYXNlIChjb2xvcilgKSkgKwogIGdlb21fYmFyKGNvbG9yID0gImJsYWNrIikKCiNVc2UgcG9zaXRpb24gPSAiZmlsbCIgdG8gZ2V0IHBlcmNlbnRhZ2VzIApnZ3Bsb3QoZGF0YSA9IGNiX2RhdGEsCiAgICAgICBhZXMoeCA9IGZjdF9pbmZyZXEoT2JzZXJ2ZXIpLAogICAgICAgICAgIGZpbGwgPSBgUGhhc2UgKGNvbG9yKWApKSArCiAgZ2VvbV9iYXIoY29sb3IgPSAiYmxhY2siLAogICAgICAgICAgIHBvc2l0aW9uID0gImZpbGwiKQoKI2dlb21fYmFyIHdpdGggYm90aCB4IGFuZCB5IGFlc3RoZXRpY3MKI1Rocm93cyBhbiBlcnJvciBiZWNhdXNlIG9mIHRoZSBkZWZhdWx0IGNvdW50aW5nCmdncGxvdChkYXRhID0gY2JfZGF0YSwKICAgICAgIGFlcyh4ID0gT2JzZXJ2ZXIsCiAgICAgICAgICAgeSA9IFZvbHVtZSkpICsKICBnZW9tX2JhcigpCgojV2UgbmVlZCB0byBzcGVjaWZ5ICJzdGF0IiBmb3IgaXQgdG8gd29yawojTW9zdCBvZiB0aGUgdGltZSB3ZSB3aWxsIHdhbnQgdG8gdXNlIHN0YXQgPSAic3VtbWFyeSIgCiMic3VtbWFyeSIgbWVhbnMgc3VtbWFyeSBzdGF0aXN0aWMgCiNUaGUgZXhhY3QgdHlwZSBvZiBzdW1tYXJ5IHN0YXQgcGlja2VkIHdpdGggZnVuID0gCmdncGxvdChkYXRhID0gY2JfZGF0YSwKICAgICAgIGFlcyh4ID0gYFBoYXNlIChjb2xvcilgLAogICAgICAgICAgIHkgPSBWb2x1bWUpKSArCiAgZ2VvbV9iYXIoc3RhdCA9ICJzdW1tYXJ5IiwKICAgICAgICAgICBmdW4gPSAibWVhbiIpCgojV2UgY2FuIGZsaXAgYXhlcyB0byBnaXZlIG1vcmUgcm9vbSBmb3IgYXhpcyBsYWJlbHMKZ2dwbG90KGRhdGEgPSBjYl9kYXRhLAogICAgICAgYWVzKHggPSBgUGhhc2UgKGNvbG9yKWAsCiAgICAgICAgICAgeSA9IFZvbHVtZSkpICsKICBnZW9tX2JhcihzdGF0ID0gInN1bW1hcnkiLAogICAgICAgICAgIGZ1biA9ICJtZWFuIikgKwogIGNvb3JkX2ZsaXAoKQoKI0FkZGluZyBtb3JlIGluZm9ybWF0aW9uIHRvIG91ciBwbG90CiNIZXJlIHVzaW5nIHRoZSBmaWxsIGFlc3RoZXRpYwpnZ3Bsb3QoZGF0YSA9IGNiX2RhdGEsCiAgICAgICBhZXMoeCA9IGBQaGFzZSAoY29sb3IpYCwKICAgICAgICAgICB5ID0gVm9sdW1lLAogICAgICAgICAgIGZpbGwgPSBPYnNlcnZlcikpICsKICBnZW9tX2JhcihzdGF0ID0gInN1bW1hcnkiLAogICAgICAgICAgIGZ1biA9ICJtZWFuIikKCiNQbG90IGJhcnMgc2lkZS1ieS1zaWRlIHVzaW5nIHBvc2l0aW9uID0gImRvZGdlIgpnZ3Bsb3QoZGF0YSA9IGNiX2RhdGEsCiAgICAgICBhZXMoeCA9IGBQaGFzZSAoY29sb3IpYCwKICAgICAgICAgICB5ID0gVm9sdW1lLAogICAgICAgICAgIGZpbGwgPSBPYnNlcnZlcikpICsKICBnZW9tX2JhcihzdGF0ID0gInN1bW1hcnkiLAogICAgICAgICAgIGZ1biA9ICJtZWFuIiwKICAgICAgICAgICBwb3NpdGlvbiA9ICJkb2RnZSIpCgojQWRkIGVycm9yYmFycwojRXJyb3IgYmFycyBhbHNvIG5lZWQgcG9zaXRpb24gPSAiZG9kZ2UiIHRvIGFsaWduIHdpdGggYmFycwpnZ3Bsb3QoZGF0YSA9IGNiX2RhdGEsCiAgICAgICBhZXMoeCA9IGBQaGFzZSAoY29sb3IpYCwKICAgICAgICAgICB5ID0gVm9sdW1lLAogICAgICAgICAgIGZpbGwgPSBPYnNlcnZlcikpICsKICBnZW9tX2JhcihzdGF0ID0gInN1bW1hcnkiLAogICAgICAgICAgIGZ1biA9ICJtZWFuIiwKICAgICAgICAgICBwb3NpdGlvbiA9ICJkb2RnZSIpICsKICBnZW9tX2Vycm9yYmFyKHN0YXQgPSAic3VtbWFyeSIsCiAgICAgICAgICAgICAgICBmdW4uZGF0YSA9ICJtZWFuX3NlIiwKICAgICAgICAgICAgICAgIHBvc2l0aW9uID0gImRvZGdlIikKCiNTaG93IHNpbWlsYXIgaW5mbyBhcyBhYm92ZSB1c2luZyBnZW9tX2JveHBsb3QKI0JveGVzIGFuZCBsaW5lcyBiYXNlZCBvbiBtZWRpYW4gKyBxdWFydGlsZXMgCiNTZWUgP2dlb21fYm94cGxvdCBmb3IgbW9yZSBpbmZvCmdncGxvdChkYXRhID0gY2JfZGF0YSwKICAgICAgIGFlcyh4ID0gYFBoYXNlIChjb2xvcilgLAogICAgICAgICAgIHkgPSBWb2x1bWUsCiAgICAgICAgICAgZmlsbCA9IE9ic2VydmVyKSkgKwogIGdlb21fYm94cGxvdCgpCgojQXNzaWduaW5nIHBsb3QgdG8gb2JqZWN0CiNVc2UgcGFyZW50aGVzZXMgdG8gYm90aCBhc3NpZ24gYSBwbG90IHRvIGFuIG9iamVjdCBhbmQgc2hvdyBpdAojTGV0cyBjaGFuZ2UgdGhlIGNvbG9yIHNjYWxlIGp1c3QgZm9yIGZ1bgoocDEgPC0gZ2dwbG90KGRhdGEgPSBjYl9kYXRhLAogICAgICAgYWVzKHggPSBgUGhhc2UgKGNvbG9yKWAsCiAgICAgICAgICAgeSA9IFZvbHVtZSwKICAgICAgICAgICBmaWxsID0gT2JzZXJ2ZXIpKSArCiAgZ2VvbV9iYXIoc3RhdCA9ICJzdW1tYXJ5IiwKICAgICAgICAgICBmdW4gPSAibWVhbiIsCiAgICAgICAgICAgcG9zaXRpb24gPSAiZG9kZ2UiKSArCiAgZ2VvbV9lcnJvcmJhcihzdGF0ID0gInN1bW1hcnkiLAogICAgICAgICAgICAgICAgZnVuLmRhdGEgPSAibWVhbl9zZSIsCiAgICAgICAgICAgICAgICBwb3NpdGlvbiA9ICJkb2RnZSIpICsKICAgIHNjYWxlX2ZpbGxfdmlyaWRpc19kKCkKKQoKKHAyIDwtIGdncGxvdChkYXRhID0gY2JfZGF0YSwKICAgICAgIGFlcyh4ID0gYFBoYXNlIChjb2xvcilgLAogICAgICAgICAgIHkgPSBWb2x1bWUsCiAgICAgICAgICAgZmlsbCA9IE9ic2VydmVyKSkgKwogIGdlb21fYm94cGxvdCgpICsKICBzY2FsZV9maWxsX3ZpcmlkaXNfZCgpCikKCiNVc2UgdGhlIHBsb3RfZ3JpZCgpIGZ1bmN0aW9uIChjb3dwbG90IHBhY2thZ2UpIHRvIGNvbWJpbmUgcGxvdHMKI0luc3RlYWQgb2YgbG9hZGluZyBwYWNrYWdlLCA6OiBjYW4gYmUgdXNlZCB0byBmaW5kIGZ1bmN0aW9uIApjb3dwbG90OjpwbG90X2dyaWQocDEsIHAyKQoKI0FkZCBsYWJlbHMKY293cGxvdDo6cGxvdF9ncmlkKHAxLCBwMiwKICAgICAgICAgICAgICAgICAgIGxhYmVscyA9ICJBVVRPIikKCiNFeHBvcnQgcGxvdCB1c2luZyBnZ3NhdmUKZ2dzYXZlKGZpbGVuYW1lID0gInBsb3QxLnBkZiIsCiAgICAgICBwbG90ID0gcDEpCg==" download="session_02.R">Download session_02.R</a>
 </div>
 <div id="resources" class="section level2">
 <h2>Resources</h2>
@@ -427,7 +417,7 @@ last week when working through the exercises.</p>
 <ol style="list-style-type: decimal">
 <li><p>Recreate the R code necessary to generate the following graphs as
 output using the cowplot package, and specifically plot_grid().</p>
-<p><img src="02_session_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p></li>
+<p><img src="02_session_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p></li>
 <li><p>Create a bar plot showing the <em>median</em> cloudbuddy volume
 for each phase.</p></li>
 <li><p>How are the following two plots different? Which aesthetic, color
@@ -440,7 +430,7 @@ ggplot(cb_data,
    aes(x = Observer)) +
   geom_bar(fill = &quot;purple&quot;)</code></pre></li>
 <li><p>Recreate the R code necessary to generate the following plot:</p>
-<p><img src="02_session_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p></li>
+<p><img src="02_session_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p></li>
 <li><p>What happens if you create a bar plot using
 <code>geom_bar()</code> and map <code>x</code> (and no other aesthetic)
 to a continuous variable? Think about why the plot looks the way it does
@@ -453,7 +443,7 @@ href="https://www.statology.org/rotate-axis-labels-ggplot2/">this
 link</a> on how to rotate axis labels and recreate the code to make the
 plot below. What are the <code>hjust</code> and <code>vjust</code>
 options used for?</p>
-<p><img src="02_session_files/figure-html/unnamed-chunk-6-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="02_session_files/figure-html/unnamed-chunk-8-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Another option is to change the font size of the axis labels,
 described <a
 href="https://statisticsglobe.com/change-font-size-of-ggplot2-plot-in-r-axis-text-main-title-legend">here</a>.
@@ -471,7 +461,7 @@ answer)?</p></li>
 <li><p>Read chapter 3.9 in the R4DS text book and see if you can create
 a so called Coxcomb chart (which looks a bit like a pie chart; something
 we will learn about how to make later) like the one below.</p>
-<p><img src="02_session_files/figure-html/unnamed-chunk-7-1.png" width="480" style="display: block; margin: auto;" /></p></li>
+<p><img src="02_session_files/figure-html/unnamed-chunk-9-1.png" width="480" style="display: block; margin: auto;" /></p></li>
 <li><p>What does <code>geom_jitter()</code> do? How does it compare to
 <code>geom_point()</code>? Create two plots, one using
 <code>geom_jitter()</code> and one using <code>geom_point()</code> (with
@@ -485,7 +475,7 @@ few new things) to recreate the figure below. When setting the histogram
 colors, remember the name of the aesthetic we use in this case. Read the
 cowplot documentation to figure out how to combine a plot with facets
 and plots without.</p>
-<p><img src="02_session_files/figure-html/unnamed-chunk-8-1.png" width="576" style="display: block; margin: auto;" /></p></li>
+<p><img src="02_session_files/figure-html/unnamed-chunk-10-1.png" width="576" style="display: block; margin: auto;" /></p></li>
 <li><p>Use the cloudbuddy data and ggplot2 to create something you think
 looks cool. This you could do by styling one of the plots you have
 already made, finding a combination of different geoms that look good

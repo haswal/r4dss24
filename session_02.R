@@ -37,116 +37,119 @@ ggplot(data = cb_data,
 #Color of bars controlled using the fill aesthetic
 #The default setting creates stacked bars
 ggplot(data = cb_data,
-       aes(x = Observer, 
-       fill = `Phase (color)`)) +
+       aes(x = fct_infreq(Observer),
+           fill = `Phase (color)`)) +
   geom_bar()
 
-#Color aesthetic controls outline
+#Color controls outline
 ggplot(data = cb_data,
-       aes(x = Observer, 
+       aes(x = fct_infreq(Observer),
            fill = `Phase (color)`)) +
   geom_bar(color = "black")
 
 #Use position = "fill" to get percentages 
 ggplot(data = cb_data,
-       aes(x = Observer, 
+       aes(x = fct_infreq(Observer),
            fill = `Phase (color)`)) +
-  geom_bar(position = "fill")
+  geom_bar(color = "black",
+           position = "fill")
 
 #geom_bar with both x and y aesthetics
 #Throws an error because of the default counting
-ggplot(data = cb_data) +
-  geom_bar(aes(x = `Phase (color)`,
-               y = Volume))
+ggplot(data = cb_data,
+       aes(x = Observer,
+           y = Volume)) +
+  geom_bar()
 
 #We need to specify "stat" for it to work
-#stat = "identity" uses data values for plotting
-#If multiple values per group, they are summed. 
-ggplot(data = cb_data) +
-  geom_bar(aes(x = `Phase (color)`,
-               y = Volume),
-           stat = "identity")
-
-#Often more useful to be specific about what to plot
-ggplot(data = cb_data) +
-  geom_bar(aes(x = `Phase (color)`,
-               y = Volume),
-           stat = "summary",
+#Most of the time we will want to use stat = "summary" 
+#"summary" means summary statistic 
+#The exact type of summary stat picked with fun = 
+ggplot(data = cb_data,
+       aes(x = `Phase (color)`,
+           y = Volume)) +
+  geom_bar(stat = "summary",
            fun = "mean")
 
 #We can flip axes to give more room for axis labels
-ggplot(data = cb_data) +
-  geom_bar(aes(x = `Phase (color)`,
-               y = Volume),
-           stat = "summary",
+ggplot(data = cb_data,
+       aes(x = `Phase (color)`,
+           y = Volume)) +
+  geom_bar(stat = "summary",
            fun = "mean") +
   coord_flip()
 
 #Adding more information to our plot
 #Here using the fill aesthetic
-ggplot(data = cb_data) +
-  geom_bar(aes(x = `Phase (color)`,
-               y = Volume, 
-               fill = Observer),
-           stat = "summary",
-           fun = "mean") +
-  coord_flip()
+ggplot(data = cb_data,
+       aes(x = `Phase (color)`,
+           y = Volume,
+           fill = Observer)) +
+  geom_bar(stat = "summary",
+           fun = "mean")
 
 #Plot bars side-by-side using position = "dodge"
 ggplot(data = cb_data,
        aes(x = `Phase (color)`,
-           y = Volume, 
+           y = Volume,
            fill = Observer)) +
   geom_bar(stat = "summary",
-           fun = "mean", 
+           fun = "mean",
            position = "dodge")
 
 #Add errorbars
 #Error bars also need position = "dodge" to align with bars
 ggplot(data = cb_data,
        aes(x = `Phase (color)`,
-           y = Volume, 
+           y = Volume,
            fill = Observer)) +
   geom_bar(stat = "summary",
-           fun = "mean", 
+           fun = "mean",
            position = "dodge") +
   geom_errorbar(stat = "summary",
                 fun.data = "mean_se",
                 position = "dodge")
 
 #Show similar info as above using geom_boxplot
+#Boxes and lines based on median + quartiles 
+#See ?geom_boxplot for more info
 ggplot(data = cb_data,
        aes(x = `Phase (color)`,
-           y = Volume, 
+           y = Volume,
            fill = Observer)) +
   geom_boxplot()
 
 #Assigning plot to object
-#Use brackets to both assign a plot to an object and show it
+#Use parentheses to both assign a plot to an object and show it
+#Lets change the color scale just for fun
 (p1 <- ggplot(data = cb_data,
        aes(x = `Phase (color)`,
-           y = Volume, 
+           y = Volume,
            fill = Observer)) +
   geom_bar(stat = "summary",
-           fun = "mean", 
+           fun = "mean",
            position = "dodge") +
   geom_errorbar(stat = "summary",
                 fun.data = "mean_se",
-                position = "dodge"))
+                position = "dodge") +
+    scale_fill_viridis_d()
+)
 
 (p2 <- ggplot(data = cb_data,
-              aes(x = `Phase (color)`,
-                  y = Volume, 
-                  fill = Observer)) +
-    geom_boxplot())
+       aes(x = `Phase (color)`,
+           y = Volume,
+           fill = Observer)) +
+  geom_boxplot() +
+  scale_fill_viridis_d()
+)
 
-#Use the plot_grid() function (cowplot) to combine plots
+#Use the plot_grid() function (cowplot package) to combine plots
 #Instead of loading package, :: can be used to find function 
 cowplot::plot_grid(p1, p2)
 
-#Add a label
+#Add labels
 cowplot::plot_grid(p1, p2,
-          labels = "AUTO")
+                   labels = "AUTO")
 
 #Export plot using ggsave
 ggsave(filename = "plot1.pdf",
