@@ -15,11 +15,10 @@ cb_data <- read_xlsx(path = "CB_data_2023.xlsx",
 filter(cb_data,
        Observer == "raID-07")
 
-#Transforming data often involves many dplyr verbs
+#Working with data often involves many functions
 #Best way to string R commands together is to use pipe: %>% 
 #Keyboard shortcut: cmd+shift+m
-#When using the pipe, tabbing is really useful
-cb_data %>% 
+cb_data %>%
   filter(Observer == "raID-07")
 
 #Pipe to filter, then view()
@@ -31,7 +30,8 @@ cb_data %>%
 cb_data %>% 
   filter(Observer == "raID-07") %>% 
   ggplot(aes(x = Age_in_days,
-              y = Weight)) +
+             y = Weight,
+             color = Observer)) +
   geom_point()
 
 #Filter uses conditions: ==, !=, >, <, >=, <=
@@ -39,8 +39,9 @@ cb_data %>%
 cb_data %>% 
   filter(Observer != "raID-07") %>% 
   ggplot(aes(x = Age_in_days,
-             y = Weight)) +
-  geom_point(aes(color = Observer))
+             y = Weight,
+             color = Observer)) +
+  geom_point()
 
 #Ages greater than 50 days (inclusive)
 cb_data %>% 
@@ -50,36 +51,34 @@ cb_data %>%
   geom_point()
 
 #Filter using multiple conditions
+#The comma within the filter function interpreted as AND
 cb_data %>% 
   filter(Age_in_days >= 50, 
          Observer != "raID-07") %>% 
   ggplot(aes(x = Age_in_days,
-             y = Weight)) +
-  geom_point()
-
-#Separating conditions with comma same as using "&"
-
-cb_data %>% 
-  filter(Age_in_days >= 50 &
-           Observer != "raID-07") %>% 
-  ggplot(aes(x = Age_in_days,
-             y = Weight)) +
+             y = Weight,
+             color = Observer)) +
   geom_point()
 
 #Use logical OR (|) to check for either condition
 cb_data %>% 
   filter(Cloudbuddy == "cbID-001" |
-           Cloudbuddy == "cbID-002")
+           Cloudbuddy == "cbID-002") %>% 
+  view()
 
 #Shortcut: %in% 
 cb_data %>% 
   filter(Cloudbuddy %in% c("cbID-001",
-                           "cbID-002"))
+                           "cbID-002",
+                           "cbID-003")) %>% 
+  view()
 
 #Can also be used with "!"
 cb_data %>% 
   filter(!Cloudbuddy %in% c("cbID-001",
-                            "cbID-002"))
+                            "cbID-002",
+                            "cbID-003")) %>% 
+  view()
 
 #Cannot use variable == NA, must use is.na()
 cb_data %>% 
@@ -91,10 +90,11 @@ cb_data %>%
 cb_data %>% 
   filter(!is.na(Volume))
 
-#dplyr verbs will not save new data, assign to save
+#dplyr verbs will not "save" new data, assign to save
 cb_data_new <- cb_data %>% 
   filter(Cloudbuddy %in% c("cbID-001",
-                           "cbID-002")) 
+                           "cbID-002",
+                           "cbID-003")) 
 
 #Next verb is arrange 
 #Will arrange a column's values in ascending order by default
@@ -107,7 +107,7 @@ cb_data %>%
 
 #Use select() to pick columns in data
 #Can be done by name
-#Output ordered
+#Output lists columns in same order as input
 cb_data %>% 
   select(Weight, 
          Volume, 
