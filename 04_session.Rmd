@@ -104,6 +104,7 @@ xfun::embed_file("cloudbuddy.png")
       14. Adding the `flatly` theme to your report
       15. **Attempt something new**: An important part of learning R is teaching yourself how to do something that you haven't explicitly been taught. At the end of the cloudbuddy report is an empty code chunk. Within this code chunk, do something new with the cloudbuddy data that you haven't tried in previous sessions or exercises. For example, this can be creating a new table using a dplyr function, attempting to customize a ggplot in a new way. Attempts that end in failure are okay, and exploring a new function or package is encouraged!  
       
+<br>
 
 * Save your modified report as `session-04-cloudbuddy.Rmd`.
 
