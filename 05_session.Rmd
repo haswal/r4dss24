@@ -1,6 +1,6 @@
 ---
 title: "Session 5"
-date: August 24, 2023
+date: September 5, 2024
 output: html_document
 ---
 
@@ -23,21 +23,21 @@ You can download the session 5 script by clicking the link below.
 <!-- to add scripts -->
 
 
-```{r, include = FALSE, eval = FALSE}
+<!-- ```{r, include = FALSE, eval = FALSE} -->
 
-# install and load these packages
-devtools::install_github('yihui/xfun')
+<!-- # install and load these packages -->
+<!-- devtools::install_github('yihui/xfun') -->
 
-# embed_file() requires a few more packages
-xfun::pkg_load2(c('base64enc', 'htmltools', 'mime'))
-```
+<!-- # embed_file() requires a few more packages -->
+<!-- xfun::pkg_load2(c('base64enc', 'htmltools', 'mime')) -->
+<!-- ``` -->
 
 
 
-```{r echo=FALSE}
-# a embed single file
-xfun::embed_file('session_05.R')
-```
+<!-- ```{r echo=FALSE} -->
+<!-- # a embed single file -->
+<!-- xfun::embed_file('session_05.R') -->
+<!-- ``` -->
 
 
 
@@ -90,7 +90,7 @@ cb_data <- read_xlsx(path = "CB_data_2023.xlsx",
 
 1. Mean-center the Volume variable for each phase separately.
 
-1. Recreate the plot below, but instead of asking `geom_bar()` and `geom_errorbar()` to calculate the mean and the standard error, calculate these values yourself using `group_by()` and `summarise()`. Once these summary statistics are calculated, pipe to `ggplot()` and add the code necessary to produce the plot. Use google to figure out how to calculate standard errors and how to use pre-calculated values with `geom_errorbar()`.  
+1. Recreate the plot below, but instead of asking `geom_bar()` and `geom_errorbar()` to calculate the mean and the standard error, calculate these values yourself using `group_by()` and `summarise()`. Once these summary statistics are calculated, pipe to `ggplot()` and add the code necessary to produce the plot. Use google to figure out how to calculate standard errors and how to use pre-calculated values with `geom_bar()` and `geom_errorbar()`.  
 
     ```{r message=FALSE, warning=FALSE, echo=FALSE, fig.width=5, fig.align="center", fig.height=3.6}
     cb_data %>% 
@@ -119,9 +119,9 @@ cb_data <- read_xlsx(path = "CB_data_2023.xlsx",
 
     ```
 
-1. Using the plot above as a starting point, create two new plots; one with errorbars representing the median absolute deviation and one with errorbars representing 95% confidence intervals. 
+1. Using the plot above as a starting point, create two new plots; one with errorbars representing the median absolute deviation and one with errorbars representing 95% confidence intervals (Hint: 95% CIs are calculated by multiplying the standard error with a certain constant). 
 
-1. During session 4, we talked about how to use the `DT` package to create interactive tables. These are perhaps most suited for large tables where showing all information would be problematic without the ability to produced paged, clickable tables. Many times when working in R we produce smaller tables, which is often the case when working `group_by()` and `summarise()` for example. Out of the box, these tables don't look very good when knitting a html document. Check the resources and see if you can reproduce the code necessary to make the table below. 
+1. During session 4, we talked about how to use the `DT` package to create interactive tables in R markdown. These are perhaps most suited for large tables where showing all information would be problematic without the ability to produced paged, clickable tables. Many times when working in R we produce smaller tables, which is often the case when working `group_by()` and `summarise()` for example. Out of the box, these tables don't look very good when knitting a html document. Check the resources and see if you can reproduce the code necessary to make the table below. 
 
 
     ```{css, echo=FALSE}
@@ -157,25 +157,9 @@ cb_data %>%
       
     ```
 
-1. Calculate the difference in mean Volume between observations younger than the median age and observations older than the median age. 
+1. Calculate the difference in mean Volume between observations younger than the median age and observations older than the median age. The `diff()` function might be useful in this case. 
 
-1. Focusing on the first two observers, calculate the proportion of observations done per phase by each observer out of the total number of observations made by each observer. When you are done, the output should look like the table below.
-
-    ```{r, echo=FALSE, message=FALSE}
-    cb_data %>%
-      filter(Observer %in% c("raID-01",
-                             "raID-02")) %>% 
-  group_by(Observer, `Phase (color)`) %>% 
-  summarise(n_phase = n()) %>% 
-  group_by(Observer) %>% 
-  mutate(all_n = sum(n_phase),
-         Proportion = n_phase / all_n) %>%
-      select(Observer, `Phase (color)`, Proportion) %>% 
-      kbl() %>% 
-      kable_paper("hover", full_width = F)
-      
-    ```
-
+1. Calculate the minimum Volume for each cloudbuddy and phase. Next, calculate the mean of all the minimum values you just generated (the output should contain one value only). Does it make a difference if you remove NAs in the beginning of the pipeline using `filter()`, if you use `na.rm = TRUE` when calculating the minimum values, or if you use `na.rm = TRUE` when calculating the mean? Pay attention to messages produced (warnings and such) when trying the three different options and explain any differences in the output. 
 
 
 

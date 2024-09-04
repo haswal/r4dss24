@@ -16,7 +16,7 @@ cb_data %>%
   select(Weight, Weight_kg) %>% 
   view()
 
-#Mutate multiple columns at once
+#Create multiple new columns at once
 cb_data %>% 
   mutate(grams_per_m3 = Weight / Volume, 
          grams_per_m3_sq = grams_per_m3^2,
@@ -51,8 +51,8 @@ cowplot::plot_grid(p1, p2)
 #ifelse() helps create variable based on values of other variable
 cb_data_fixed <- cb_data %>% 
   mutate(Weight_fixed = ifelse(Observer == "raID-07",
-                                              Weight * 1000, 
-                                              Weight))
+                               Weight * 1000, 
+                               Weight))
 
 #plot new variable
 cb_data_fixed %>%
@@ -95,6 +95,7 @@ cb_data %>%
   summarise(mean_Age = mean(Age_in_days))
 
 #Multiple summary stats can be calculated at the same time
+#n() function counts number of obs per group
 cb_data %>% 
   group_by(`Phase (color)`) %>% 
   summarise(mean_Age = mean(Age_in_days),
@@ -102,17 +103,18 @@ cb_data %>%
             n = n())
 
 #And can be combined with logical operations
-#sum counts
+#The sum() functions counts number of obs that are "TRUE"
 cb_data %>% 
   group_by(`Phase (color)`) %>% 
   summarise(sum(Age_in_days > 10))
 
-#mean() gives proportion
+#mean() gives proportion of "TRUE"
 cb_data %>% 
   group_by(`Phase (color)`) %>% 
   summarise(mean(Age_in_days > 10))
 
 #We can also group by multiple variables
+#Now groups are all combinations of phase and observer 
 cb_data %>% 
   group_by(`Phase (color)`, Observer) %>% 
   summarise(mean(Age_in_days)) %>% 
@@ -136,6 +138,7 @@ cb_data %>%
   summarise(mean(Volume, na.rm = TRUE))
 
 #group_by can be used with other functions than summarise
+#Used with mutate can be helpful if summary + original data is wanted
 cb_data %>% 
   group_by(`Phase (color)`) %>% 
   mutate(mean_Vol = mean(Volume, na.rm = TRUE)) %>% 
@@ -154,15 +157,4 @@ cb_data %>%
   mutate(grand_mean_vol = mean(Volume, na.rm = TRUE)) %>% 
   view()
 
-#A somewhat more complicated example
-#Here calculating what is called the "sum of squares between"
-cb_data %>% 
-  filter(!is.na(Volume)) %>% 
-  mutate(grand_mean_vol = mean(Volume)) %>% 
-  group_by(`Phase (color)`) %>% 
-  summarise(mean_vol = mean(Volume),
-            grand_mean_vol = first(grand_mean_vol),
-            n = n()) %>% 
-  mutate(squares = (mean_vol - grand_mean_vol)^2,
-         squares_n = squares * n) %>% 
-  summarise(sum_of_squares = sum(squares_n))
+#Sometimes we want to use summarise to summarize summaries. 
