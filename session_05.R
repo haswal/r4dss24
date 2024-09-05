@@ -26,8 +26,9 @@ cb_data %>%
 #Returning to the issue regarding the wonky weight obs
 ggplot(cb_data, 
        aes(x = Age_in_days,
-           y = Weight)) +
-  geom_point(aes(color = Observer))
+           y = Weight,
+           color = Observer)) +
+  geom_point()
 
 #Lets make two plots
 #One with only "raID-07"
@@ -57,8 +58,9 @@ cb_data_fixed <- cb_data %>%
 #plot new variable
 cb_data_fixed %>%
   ggplot(aes(x = Age_in_days,
-             y = Weight_fixed)) +
-  geom_point(aes(color = Observer))
+             y = Weight_fixed,
+             color = Observer)) +
+  geom_point()
 
 #Steps piped together
 cb_data %>% 
@@ -66,8 +68,9 @@ cb_data %>%
                                Weight * 1000, 
                                Weight)) %>% 
   ggplot(aes(x = Age_in_days,
-             y = Weight_fixed)) +
-  geom_point(aes(color = Observer))
+             y = Weight_fixed,
+             color = Observer)) +
+  geom_point()
 
 #Mutate adds new variables at the end of tibble
 #Transmute keeps only new variables
@@ -85,7 +88,7 @@ cb_data %>%
 cb_data %>% 
   summarise(mean(Age_in_days))
 
-#Output can be named (column name)
+#Output can be named (column name added in output)
 cb_data %>% 
   summarise(mean_Age = mean(Age_in_days))
 
@@ -102,8 +105,16 @@ cb_data %>%
             stdev_Age = sd(Age_in_days),
             n = n())
 
-#And can be combined with logical operations
+#Sometimes we want to use summarise to summarize summaries
+cb_data %>% 
+  group_by(`Phase (color)`) %>% 
+  summarise(mean_Age = mean(Age_in_days)) %>% 
+  summarise(median(mean_Age))
+
+#summarise can be used with logical operations
 #The sum() functions counts number of obs that are "TRUE"
+#TRUE/FALSE variables can be interpreted as numeric 
+#TRUE = 1, FALSE = 0
 cb_data %>% 
   group_by(`Phase (color)`) %>% 
   summarise(sum(Age_in_days > 10))
@@ -114,7 +125,7 @@ cb_data %>%
   summarise(mean(Age_in_days > 10))
 
 #We can also group by multiple variables
-#Now groups are all combinations of phase and observer 
+#In this case groups are now all combinations of phase and observer 
 cb_data %>% 
   group_by(`Phase (color)`, Observer) %>% 
   summarise(mean(Age_in_days)) %>% 
@@ -125,7 +136,7 @@ cb_data %>%
   group_by(`Phase (color)`) %>% 
   summarise(mean(Volume))
 
-#NAs are "contagious"; if any NA calculations will be NA
+#NAs are "contagious"; if any obs NA calculations will be NA
 #Solution with filter
 cb_data %>% 
   filter(!is.na(Volume)) %>% 
@@ -140,21 +151,16 @@ cb_data %>%
 #group_by can be used with other functions than summarise
 #Used with mutate can be helpful if summary + original data is wanted
 cb_data %>% 
-  group_by(`Phase (color)`) %>% 
+  group_by(Observer) %>% 
   mutate(mean_Vol = mean(Volume, na.rm = TRUE)) %>% 
-  arrange(`Phase (color)`) %>% 
   view()
 
 cb_data %>% 
-  group_by(`Phase (color)`) %>% 
+  group_by(Observer) %>% 
   count()
 
-#Use ungroup() to remove grouping
 cb_data %>% 
-  group_by(`Phase (color)`) %>% 
-  mutate(mean_vol = mean(Volume, na.rm = TRUE)) %>% 
-  ungroup() %>% 
-  mutate(grand_mean_vol = mean(Volume, na.rm = TRUE)) %>% 
-  view()
+  group_by(Observer) %>% 
+  filter(n() > 150)
 
-#Sometimes we want to use summarise to summarize summaries. 
+ 
