@@ -46,6 +46,8 @@ xfun::embed_file('session_05.R')
 
 We will continue to talk about things covered in Chapter 5, this time sections 5.5 - 5.7. 
 
+Check out this [blog post](https://www.andrewheiss.com/blog/2024/04/04/group_by-summarize-ungroup-animations/) if you would like to see some animations showing how `group_by()`, `summarise()` and `mutate()` work. Note that the examples use the "new" pipe (`|>`), which works exactly the same way as `%>%`. 
+
 The `kableExtra` package is great for styling tables created by for example `summarise()`. Information about this package can be found [here](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html).
 
 
