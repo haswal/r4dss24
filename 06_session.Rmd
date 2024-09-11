@@ -1,6 +1,6 @@
 ---
 title: "Session 6"
-date: August 31, 2023
+date: September 12, 2024
 output: html_document
 ---
 
@@ -20,7 +20,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Script
 
-Since there will be no live coding session this week, no script is provided. Instead, you will learn about tidying data by self-studying the textbook. 
+Since there will be no live coding session this week, no script is provided. Instead, you will learn about tidying data by reading the textbook. 
 
 
 ## Cheatsheets
@@ -31,18 +31,202 @@ Since there will be no live coding session this week, no script is provided. Ins
 
 This week we will go through chapter 12 in the R4DS textbook. 
 
-The most important thing to understand this week is pivoting (`pivot_longer()` and `pivot_wider()`). The concept of pivoting is rather straight-forward, but I think a visualization of the process can be helpful when first learning about these methods. Therefore, I created an animation going through the different steps of `pivot_longer()` and it can be found [here](https://haswal.github.io/pivot/). 
+The most important thing to understand this week is pivoting (`pivot_longer()` and `pivot_wider()`). The concept of pivoting is rather straight forward, but a visualization of the process can be helpful when first learning about these methods. Therefore, Hasse created an animation going through the different steps of `pivot_longer()` and it can be found [here](https://haswal.github.io/pivot/). 
 
 
 ## Homework Exercises
 
-Feel free to complete all exercises in chapter 12 of the textbook. During the Tuesday homework session we will however focus on the following exercises:
+```{r, include = FALSE}
+library(tidyverse)
+library(readxl)
+library(kableExtra)
 
-* 12.2.1: Exercise 3 
-* 12.3.3: Exercises 2 and 4
-* 12.4.3. Exercises 1-3
-* 12.5.1: Exercises 1 and 2
-* 12.6.1: Exercises 1-4
- 
+cb_data <- read_xlsx(path = "CB_data_2023.xlsx",
+                     skip = 11,
+                     na = "-99")
 
-   
+ADOS1 <- read_xlsx("/Users/hassewalum/Desktop/R-training/ADOS1.xlsx")
+ADOS3 <- read_xlsx("/Users/hassewalum/Desktop/R-training/ADOS3.xlsx",
+                   na = "NA")
+
+```
+
+1. [Section 12.6](https://r4ds.had.co.nz/tidy-data.html#case-study) in the textbook contains a case study with data that needs tidying. Follow along and run the code examples in parallel with the explanations in the text. There's no need complete the exercises related to the case study (#1-4). 
+
+    Finally, use the tidied data you produced to create a visualization. This time we want you to create an informative plot, showing some relationship between TB cases and one or more of the other variables avaliable in the data. What exactly to plot is up to you, just make sure the graph clearly communicates the relationship(s) you choose to focus on.
+    
+1. Both `unite()` and `separate()` have a `remove` argument. What does it do? Why would you set it to `FALSE`?    
+    
+1. Use the cloudbuddy data to produce the plot below, utilizing the `pivot_longer()` function to get the data in the right format before plotting. One helpful trick when wanting to use specific colors with unknown names (the colors in the Marcus Center logo for example) is to use the MacOS *Digital Color Meter*, convert RGB values to hex code using an online tool like [this one](https://www.rgbtohex.net), and use the hex code in R the same way as color names. 
+
+    ```{r message=FALSE, warning=FALSE, echo=FALSE, fig.width=6, fig.align="center", fig.height=3.6}
+    cb_data %>% 
+      mutate(Weight = ifelse(Observer == "raID-07",
+                                   Weight * 1000,
+                                   Weight)) %>% 
+      pivot_longer(cols = c(Volume, Weight),
+                   names_to = "Measure",
+                   values_to = "Values") %>% 
+      ggplot(aes(x = `Phase (color)`, 
+                 y = Values,
+                 fill = Measure)) +
+      geom_bar(stat = "summary",
+               fun = mean,
+               color = "black") +
+      facet_wrap(~Measure, 
+                 scales = "free_x") +
+      labs(y = "Average value") +
+      guides(fill = "none") +
+      scale_fill_manual(values = c("#9EB5CF", "#738DB1")) +
+      coord_flip() +
+      theme_linedraw()
+
+    ```
+
+1. Recreate the table below, using a combination of `group_by()`, `summarise()`, `unite()`, `pivot_wider()`, and functions from the `kableExtra` package (and perhaps a few other functions as well). There are different ways the column name for the first column can be removed, the simplest way being to treat the first column as *row names*, something that is described [here](https://tibble.tidyverse.org/reference/rownames.html).  
+
+    ```{css, echo=FALSE}
+table tr td p {
+  margin: 1px;
+}
+
+thead p {
+  margin: 1px;
+}
+
+caption p {
+  margin: 0px;
+}
+
+    ```
+
+    ```{r message=FALSE, warning=FALSE, echo=FALSE}
+    cb_data %>%
+      filter(!is.na(Volume)) %>% 
+      group_by(`Phase (color)`, Observer) %>% 
+      summarise(mean_Volume = mean(Volume),
+                sd_Volume = sd(Volume),
+                n = n(),
+                std_error = sd_Volume / sqrt(n)) %>% 
+      mutate(mean_Volume = round(mean_Volume, 2),
+             std_error = round(std_error, 2)) %>%
+      unite(ms, 
+            c(mean_Volume, std_error), 
+            sep = " ± ") %>% 
+      select(-sd_Volume, -n) %>% 
+      pivot_wider(names_from = Observer, 
+                  values_from = ms) %>% 
+      column_to_rownames("Phase (color)") %>% 
+      kbl(caption = "Table1: Mean Volume ± standard error, per phase and observer") %>% 
+      kable_classic("striped", full_width = T) %>% 
+      kable_styling(font_size = 13)
+
+    ```
+
+<br>
+<br>
+
+<style>
+div.alert {
+background-color: #738DB1;
+border: 1px solid black;
+}
+
+</style>
+
+
+<div class="alert alert-info">
+For the next set of exercises, you will get to work with real data from Marcus (sent via Slack). These exercises will be using three different datasets from clinical researchers interested in the Autism Diagnostic Observation Scale (ADOS). Some datasets contain more variables than others and all have different data structures. Your job is to help all three researchers to manipulate (tidy) their data so that visualizing and summarizing the data becomes a straight forward experience.
+</div>
+
+<br>
+
+5. First up is the `ADOS1.xlsx` dataset. The researcher responsible for this data collection created a new row each time a participant visited the clinic. The participants' DEX-ID, age at evaluation, and diagnostic outcome are included in every row, alongside the ADOS module they received, the date they received it, their scores on both the Social Affect and Repetitive and Restrictive Behavior subscales, and the algorithm used to score their ADOS.
+
+    Use one of the `pivot_*()` functions to properly format the `ADOS1` dataset so you are able to recreate the plot below. Take a look at the legend and y-axis labels for a hint as to the variables you may need to create.
+    
+    ```{r message=FALSE, warning=FALSE, echo=FALSE, fig.width=6, fig.align="center", fig.height=3.6}
+    ADOS1 %>% 
+      pivot_longer(c(Social, RRB),
+                   names_to = "Subscale",
+                   values_to = "Score") %>% 
+      ggplot(aes(x = Age.At.Eval, 
+                 y = Score,
+                 color = Subscale)) + 
+      geom_smooth(se = FALSE)
+    ```
+    
+6. Next, we have the `ADOS2.xlsx` dataset, created by a researcher who might benefit from reading [Chapter 12](https://r4ds.had.co.nz/tidy-data.html) in the R4DS text book. This researcher was only interested in participants' scores on the Social Affect subscale, but still wanted to measure change over time. One new column was added for each participant assessed, reflecting all ages at which participants came to the clinic, inputting their Social Affect score on the row corresponding with their age at that clinic visit (we know, not a great way to input data!). As you will see, this dataset contains many missing values, as it would be quite unrealistic for all participants to visit at all ages.
+
+    Use one of the `pivot_*()` functions to properly format the `ADOS2` dataset so you are able to calculate the average number of visits across all participants. 
+    
+    ```{r message=FALSE, warning=FALSE, echo=FALSE, eval=FALSE}
+    read_xlsx("ADOS2.xlsx", skip = 2) %>% 
+      pivot_longer(cols = 2:1036,
+                   names_to = "Individual",
+                   values_to = "Social") %>%
+      filter(!is.na(Social)) %>% 
+      group_by(Individual) %>% 
+      summarise(n = n()) %>% 
+      summarise(mean(n))
+    
+    ```
+
+7. Finally, we have the  `ADOS3.xlsx`, created by a researcher who only recorded data from a single visit for each participant. This single visit, however, is reflected across two different rows, as a new row was created when scoring each subscale.
+
+    Use one of the `pivot_*()` functions to properly format the `ADOS3` dataset so you are able to recreate the plot below. Take a look at the x- and y-axis labels for a hint as to the variables you may need to create.
+    
+    ```{r message=FALSE, warning=FALSE, echo=FALSE, fig.width=6, fig.align="center", fig.height=3.6}
+    ADOS3 %>% 
+      pivot_wider(names_from = Measure,
+                  values_from = Score) %>% 
+      ggplot(aes(x = Social,
+                 y = RRB,
+                 color = Classification)) + 
+      geom_point(position = 'jitter',
+                 alpha = 0.5) +
+      geom_smooth(method = 'lm') + 
+      theme_bw() + 
+      facet_wrap(~Classification,
+                 scales = "free") +
+      guides(color = "none")
+    ```
+    
+8. Using the `ADOS1` dataset, create a new variable called `Year` so that you are able to recreate the plot below. You may need to use the `mutate()` function to specify whether `Year` variable should be a numeric or character variable (this will change the default plotting behavior in `ggplot()`) and information about how to change the variable type can be found [here](https://stackoverflow.com/questions/31415344/using-as-numeric-with-functions-and-pipes-in-r). Hint - the values you will need to create the `Year` variable are stored in the `Date.Of.Evaluation` column.
+
+    ```{r message=FALSE, warning=FALSE, echo=FALSE, fig.width=6, fig.align="center", fig.height=3.6}
+    ADOS1 %>% 
+      separate(Date.Of.Evaluation, 
+               into = c("Year", "MonthDay"),
+               sep = 4) %>% 
+      mutate(Year = as.numeric(Year), 
+             Total_score = Social + RRB) %>% 
+      ggplot(aes(x = Year,
+                 y = Total_score)) +
+      geom_smooth() + 
+      theme_minimal() +
+      labs(y = "Social + RRB Score")
+    ```
+    
+9. Using the `ADOS1` data, pivot and create a new column called `LanguageAndOutcome` so that you can recreate the plot below. Notice that you may need to `filter()` this new variable to only retrieve the groups of interest. The bars in this plot represent the mean Scores on each Subscale.      
+
+    ```{r message=FALSE, warning=FALSE, echo=FALSE, fig.width=7, fig.align="center", fig.height=3.6}
+    ADOS1 %>% 
+      pivot_longer(c(Social,RRB),
+                   names_to = "Subscale",
+                   values_to = "Score") %>% 
+      unite(LanguageAndOutcome,
+            c(Algorithm, Classification),
+            sep = '-') %>% 
+      filter(LanguageAndOutcome %in% c("verbal-ASD",
+                                       "nonverbal-ASD")) %>% 
+      ggplot(aes(x = Subscale,
+                 y = Score,
+                 fill = LanguageAndOutcome)) + 
+      geom_bar(stat = "summary",
+               fun = "mean",
+               position = "dodge") + 
+      scale_fill_manual(values = c("forestgreen", 
+                                   "slateblue")) +
+      theme_minimal() 
+    ```

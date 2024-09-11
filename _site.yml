@@ -1,5 +1,6 @@
 name: ""
 output_dir: "docs"
+exclude: ["*.xlsx"]
 navbar:
   title: "r4dss24"
   left:
@@ -19,8 +20,8 @@ navbar:
           href: 04_session.html
         - text: "Session 5"
           href: 05_session.html
-    #     - text: "Session 6"
-    #       href: 06_session.html
+        - text: "Session 6"
+          href: 06_session.html
     #     - text: "Session 7"
     #       href: 07_session.html
 

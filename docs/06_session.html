@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2023-08-31" />
+<meta name="date" content="2024-09-12" />
 
 <title>Session 6</title>
 
@@ -36,6 +36,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -348,6 +350,9 @@ div.tocify {
     <li>
       <a href="05_session.html">Session 5</a>
     </li>
+    <li>
+      <a href="06_session.html">Session 6</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -363,7 +368,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Session 6</h1>
-<h4 class="date">August 31, 2023</h4>
+<h4 class="date">September 12, 2024</h4>
 
 </div>
 
@@ -382,8 +387,8 @@ div.tocify {
 <div id="script" class="section level2">
 <h2>Script</h2>
 <p>Since there will be no live coding session this week, no script is
-provided. Instead, you will learn about tidying data by self-studying
-the textbook.</p>
+provided. Instead, you will learn about tidying data by reading the
+textbook.</p>
 </div>
 <div id="cheatsheets" class="section level2">
 <h2>Cheatsheets</h2>
@@ -397,24 +402,324 @@ href="https://rstudio.github.io/cheatsheets/tidyr.pdf">tidyr</a></li>
 <p>This week we will go through chapter 12 in the R4DS textbook.</p>
 <p>The most important thing to understand this week is pivoting
 (<code>pivot_longer()</code> and <code>pivot_wider()</code>). The
-concept of pivoting is rather straight-forward, but I think a
-visualization of the process can be helpful when first learning about
-these methods. Therefore, I created an animation going through the
-different steps of <code>pivot_longer()</code> and it can be found <a
+concept of pivoting is rather straight forward, but a visualization of
+the process can be helpful when first learning about these methods.
+Therefore, Hasse created an animation going through the different steps
+of <code>pivot_longer()</code> and it can be found <a
 href="https://haswal.github.io/pivot/">here</a>.</p>
 </div>
 <div id="homework-exercises" class="section level2">
 <h2>Homework Exercises</h2>
-<p>Feel free to complete all exercises in chapter 12 of the textbook.
-During the Tuesday homework session we will however focus on the
-following exercises:</p>
-<ul>
-<li>12.2.1: Exercise 3</li>
-<li>12.3.3: Exercises 2 and 4</li>
-<li>12.4.3. Exercises 1-3</li>
-<li>12.5.1: Exercises 1 and 2</li>
-<li>12.6.1: Exercises 1-4</li>
-</ul>
+<ol style="list-style-type: decimal">
+<li><p><a
+href="https://r4ds.had.co.nz/tidy-data.html#case-study">Section 12.6</a>
+in the textbook contains a case study with data that needs tidying.
+Follow along and run the code examples in parallel with the explanations
+in the text. There’s no need complete the exercises related to the case
+study (#1-4).</p>
+<p>Finally, use the tidied data you produced to create a visualization.
+This time we want you to create an informative plot, showing some
+relationship between TB cases and one or more of the other variables
+avaliable in the data. What exactly to plot is up to you, just make sure
+the graph clearly communicates the relationship(s) you choose to focus
+on.</p></li>
+<li><p>Both <code>unite()</code> and <code>separate()</code> have a
+<code>remove</code> argument. What does it do? Why would you set it to
+<code>FALSE</code>?</p></li>
+<li><p>Use the cloudbuddy data to produce the plot below, utilizing the
+<code>pivot_longer()</code> function to get the data in the right format
+before plotting. One helpful trick when wanting to use specific colors
+with unknown names (the colors in the Marcus Center logo for example) is
+to use the MacOS <em>Digital Color Meter</em>, convert RGB values to hex
+code using an online tool like <a href="https://www.rgbtohex.net">this
+one</a>, and use the hex code in R the same way as color names.</p>
+<p><img src="06_session_files/figure-html/unnamed-chunk-2-1.png" width="576" style="display: block; margin: auto;" /></p></li>
+<li><p>Recreate the table below, using a combination of
+<code>group_by()</code>, <code>summarise()</code>, <code>unite()</code>,
+<code>pivot_wider()</code>, and functions from the
+<code>kableExtra</code> package (and perhaps a few other functions as
+well). There are different ways the column name for the first column can
+be removed, the simplest way being to treat the first column as <em>row
+names</em>, something that is described <a
+href="https://tibble.tidyverse.org/reference/rownames.html">here</a>.</p>
+<style type="text/css">
+ table tr td p {
+   margin: 1px;
+ }
+
+ thead p {
+   margin: 1px;
+ }
+
+ caption p {
+   margin: 0px;
+ }
+
+ </style>
+<table class=" lightable-classic lightable-striped table" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; margin-left: auto; margin-right: auto; font-size: 13px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<p>Table1: Mean Volume ± standard error, per phase and observer</p>
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+<p>raID-01</p>
+</th>
+<th style="text-align:left;">
+<p>raID-02</p>
+</th>
+<th style="text-align:left;">
+<p>raID-03</p>
+</th>
+<th style="text-align:left;">
+<p>raID-04</p>
+</th>
+<th style="text-align:left;">
+<p>raID-05</p>
+</th>
+<th style="text-align:left;">
+<p>raID-06</p>
+</th>
+<th style="text-align:left;">
+<p>raID-07</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<p>1-lightgray</p>
+</td>
+<td style="text-align:left;">
+<p>1.57 ± 0.35</p>
+</td>
+<td style="text-align:left;">
+<p>1.6 ± 0.37</p>
+</td>
+<td style="text-align:left;">
+<p>1.97 ± 0.32</p>
+</td>
+<td style="text-align:left;">
+<p>1.67 ± 0.37</p>
+</td>
+<td style="text-align:left;">
+<p>1.69 ± 0.35</p>
+</td>
+<td style="text-align:left;">
+<p>2.07 ± 0.36</p>
+</td>
+<td style="text-align:left;">
+<p>1.81 ± 0.64</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p>2-darkgray</p>
+</td>
+<td style="text-align:left;">
+<p>7.97 ± 0.24</p>
+</td>
+<td style="text-align:left;">
+<p>8.02 ± 0.31</p>
+</td>
+<td style="text-align:left;">
+<p>8.2 ± 0.19</p>
+</td>
+<td style="text-align:left;">
+<p>8.16 ± 0.31</p>
+</td>
+<td style="text-align:left;">
+<p>7.94 ± 0.3</p>
+</td>
+<td style="text-align:left;">
+<p>8.29 ± 0.23</p>
+</td>
+<td style="text-align:left;">
+<p>7.74 ± 0.38</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p>3-darkorange</p>
+</td>
+<td style="text-align:left;">
+<p>5.72 ± 0.37</p>
+</td>
+<td style="text-align:left;">
+<p>5.56 ± 0.28</p>
+</td>
+<td style="text-align:left;">
+<p>5.86 ± 0.29</p>
+</td>
+<td style="text-align:left;">
+<p>5.73 ± 0.39</p>
+</td>
+<td style="text-align:left;">
+<p>6.22 ± 0.34</p>
+</td>
+<td style="text-align:left;">
+<p>6.08 ± 0.26</p>
+</td>
+<td style="text-align:left;">
+<p>5.92 ± 0.62</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p>4-orange</p>
+</td>
+<td style="text-align:left;">
+<p>3.45 ± 0.2</p>
+</td>
+<td style="text-align:left;">
+<p>3.55 ± 0.18</p>
+</td>
+<td style="text-align:left;">
+<p>3.87 ± 0.18</p>
+</td>
+<td style="text-align:left;">
+<p>4 ± 0.18</p>
+</td>
+<td style="text-align:left;">
+<p>3.77 ± 0.22</p>
+</td>
+<td style="text-align:left;">
+<p>3.82 ± 0.18</p>
+</td>
+<td style="text-align:left;">
+<p>3.09 ± 0.32</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p>5-orangered</p>
+</td>
+<td style="text-align:left;">
+<p>3.04 ± 0.17</p>
+</td>
+<td style="text-align:left;">
+<p>3.14 ± 0.16</p>
+</td>
+<td style="text-align:left;">
+<p>3.39 ± 0.15</p>
+</td>
+<td style="text-align:left;">
+<p>3.23 ± 0.14</p>
+</td>
+<td style="text-align:left;">
+<p>3.06 ± 0.16</p>
+</td>
+<td style="text-align:left;">
+<p>3.58 ± 0.15</p>
+</td>
+<td style="text-align:left;">
+<p>2.67 ± 0.37</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<p>6-red</p>
+</td>
+<td style="text-align:left;">
+<p>0.37 ± 0.11</p>
+</td>
+<td style="text-align:left;">
+<p>0.51 ± 0.14</p>
+</td>
+<td style="text-align:left;">
+<p>0.65 ± 0.13</p>
+</td>
+<td style="text-align:left;">
+<p>0.56 ± 0.12</p>
+</td>
+<td style="text-align:left;">
+<p>0.58 ± 0.13</p>
+</td>
+<td style="text-align:left;">
+<p>0.64 ± 0.15</p>
+</td>
+<td style="text-align:left;">
+<p>0.46 ± 0.2</p>
+</td>
+</tr>
+</tbody>
+</table></li>
+</ol>
+<p><br> <br></p>
+<style>
+div.alert {
+background-color: #738DB1;
+border: 1px solid black;
+}
+
+</style>
+<div class="alert alert-info">
+<p>For the next set of exercises, you will get to work with real data
+from Marcus (sent via Slack). These exercises will be using three
+different datasets from clinical researchers interested in the Autism
+Diagnostic Observation Scale (ADOS). Some datasets contain more
+variables than others and all have different data structures. Your job
+is to help all three researchers to manipulate (tidy) their data so that
+visualizing and summarizing the data becomes a straight forward
+experience.</p>
+</div>
+<p><br></p>
+<ol start="5" style="list-style-type: decimal">
+<li><p>First up is the <code>ADOS1.xlsx</code> dataset. The researcher
+responsible for this data collection created a new row each time a
+participant visited the clinic. The participants’ DEX-ID, age at
+evaluation, and diagnostic outcome are included in every row, alongside
+the ADOS module they received, the date they received it, their scores
+on both the Social Affect and Repetitive and Restrictive Behavior
+subscales, and the algorithm used to score their ADOS.</p>
+<p>Use one of the <code>pivot_*()</code> functions to properly format
+the <code>ADOS1</code> dataset so you are able to recreate the plot
+below. Take a look at the legend and y-axis labels for a hint as to the
+variables you may need to create.</p>
+<p><img src="06_session_files/figure-html/unnamed-chunk-5-1.png" width="576" style="display: block; margin: auto;" /></p></li>
+<li><p>Next, we have the <code>ADOS2.xlsx</code> dataset, created by a
+researcher who might benefit from reading <a
+href="https://r4ds.had.co.nz/tidy-data.html">Chapter 12</a> in the R4DS
+text book. This researcher was only interested in participants’ scores
+on the Social Affect subscale, but still wanted to measure change over
+time. One new column was added for each participant assessed, reflecting
+all ages at which participants came to the clinic, inputting their
+Social Affect score on the row corresponding with their age at that
+clinic visit (we know, not a great way to input data!). As you will see,
+this dataset contains many missing values, as it would be quite
+unrealistic for all participants to visit at all ages.</p>
+<p>Use one of the <code>pivot_*()</code> functions to properly format
+the <code>ADOS2</code> dataset so you are able to calculate the average
+number of visits across all participants.</p></li>
+<li><p>Finally, we have the <code>ADOS3.xlsx</code>, created by a
+researcher who only recorded data from a single visit for each
+participant. This single visit, however, is reflected across two
+different rows, as a new row was created when scoring each subscale.</p>
+<p>Use one of the <code>pivot_*()</code> functions to properly format
+the <code>ADOS3</code> dataset so you are able to recreate the plot
+below. Take a look at the x- and y-axis labels for a hint as to the
+variables you may need to create.</p>
+<p><img src="06_session_files/figure-html/unnamed-chunk-7-1.png" width="576" style="display: block; margin: auto;" /></p></li>
+<li><p>Using the <code>ADOS1</code> dataset, create a new variable
+called <code>Year</code> so that you are able to recreate the plot
+below. You may need to use the <code>mutate()</code> function to specify
+whether <code>Year</code> variable should be a numeric or character
+variable (this will change the default plotting behavior in
+<code>ggplot()</code>) and information about how to change the variable
+type can be found <a
+href="https://stackoverflow.com/questions/31415344/using-as-numeric-with-functions-and-pipes-in-r">here</a>.
+Hint - the values you will need to create the <code>Year</code> variable
+are stored in the <code>Date.Of.Evaluation</code> column.</p>
+<p><img src="06_session_files/figure-html/unnamed-chunk-8-1.png" width="576" style="display: block; margin: auto;" /></p></li>
+<li><p>Using the <code>ADOS1</code> data, pivot and create a new column
+called <code>LanguageAndOutcome</code> so that you can recreate the plot
+below. Notice that you may need to <code>filter()</code> this new
+variable to only retrieve the groups of interest. The bars in this plot
+represent the mean Scores on each Subscale.</p>
+<p><img src="06_session_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p></li>
+</ol>
 </div>
 
 
