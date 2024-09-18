@@ -42,7 +42,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Cheatsheets
 
 * [stringr](https://rstudio.github.io/cheatsheets/strings.pdf)
-* [dplyr](https://rstudio.github.io/cheatsheets/data-transformation.pdf) Listed again because the sheet includes `*_join()` functions
+* [dplyr](https://rstudio.github.io/cheatsheets/data-transformation.pdf) (Listed again because the sheet includes `*_join()` functions)
 
 <!-- * [regex](https://adprice.fedorapeople.org/regular-expressions-cheat-sheet-v1.pdf) -->
 
