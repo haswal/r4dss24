@@ -50,7 +50,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Content for session 7 will be based off of chapters 13 and 14 in the R4DS textbook. 
 
-Learning regular expressions (regex) is a bit challenging and therefore having good learning tools is important. The strings chapter the textbook is a good start, but I find it best to practice regex using interactive online tools. This link is a good resource and will teach you regex basics as well as let you practice interactively (I visit this site occasionally and learn something new every time): [https://regexone.com](https://regexone.com)
+Learning regular expressions (regex) is a bit challenging and therefore having good learning tools is important. The strings chapter in the textbook is a good start, but I find it best to practice regex using interactive online tools. This link is a good resource and will teach you regex basics as well as let you practice interactively (I visit this site occasionally and learn something new every time): [https://regexone.com](https://regexone.com)
 
 Several game type versions of regex learning tools are available online. [Here](https://regexcrossword.com) is a link to a collection of regex crossword puzzles. 
 
