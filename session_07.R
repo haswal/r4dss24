@@ -2,7 +2,7 @@
 library(tidyverse)
 library(readxl)
 
-#Reading in data per usual
+#Reading in data
 cb_data <- read_xlsx(path = "CB_data_2023.xlsx",
                      skip = 11,
                      na = "-99")
@@ -21,24 +21,25 @@ cb_data %>%
 #String detection in str_detect uses regular expressions (regex)
 #regex is a mini-language used for describing string patterns  
 #regex uses characters with special meaning
-#For example if we want to find all cbIDs ending with 9 -> 9$
+#For example if we want to find all cbIDs ending with 9: "9$"
 cb_data %>% 
   filter(str_detect(Cloudbuddy, "9$")) %>% 
   view()
 
-#To find all cbIDs with 7 or 9 -> use []
+#To find all cbIDs including 7 or 9, use []
 cb_data %>% 
   filter(str_detect(Cloudbuddy, "[79]")) %>% 
   view()
 
-#To find all cbIDs with 7, 8, or 9 -> use [] to specify range
+#To find all cbIDs with 7, 8, or 9, use [] to specify range with "-"
 cb_data %>% 
   filter(str_detect(Cloudbuddy, "[7-9]")) %>% 
   view()
 
-#Specify number of times a character appears -> use {}
+#To specify number of times a character should be matched, use {}
+#"[01]{2}" mean either 00, 11, 01, or 10 included somewhere in string
 cb_data %>% 
-  filter(str_detect(Cloudbuddy, "[7-9]{2}")) %>% 
+  filter(str_detect(Cloudbuddy, "[01]{2}")) %>% 
   view()
 
 #New data!
@@ -51,36 +52,32 @@ cb_mood %>%
 
 #Time to do some cleaning! We will start with the mood column
 cb_mood %>% 
-  count(mood) %>% 
-  view()
+  count(mood)
 
 #First thing I notice is mix of upper and lower case characters
 #str_to_lower changes all characters to lower case
 #See also str_to_upper, str_to_title, str_to_sentence
 cb_mood %>% 
   mutate(mood = str_to_lower(mood)) %>% 
-  count(mood) %>% 
-  view("2")
+  count(mood)
 
 #Next, "medium" should probably be "neutral" 
 #str_replace can be used as find-replace
 cb_mood %>% 
   mutate(mood = str_to_lower(mood),
          mood = str_replace(mood, "medium", "neutral")) %>% 
-  count(mood) %>% 
-  view("3")
+  count(mood)
 
 #All strings with something before "happy" should be "very happy"
 #And all strings with something before "sad" should be "very sad"
-#regex wildcard (matches any character) -> .
-#Wildcard can be used with quantifier, + means once or more times
+#regex wildcard (matches any character): "."
+#Wildcard can be used with quantifier, "+" means once or more times
 cb_mood %>% 
   mutate(mood = str_to_lower(mood),
          mood = str_replace(mood, "medium", "neutral"),
          mood = str_replace(mood, ".+happy", "very happy"),
          mood = str_replace(mood, ".+sad", "very sad")) %>% 
-  count(mood) %>% 
-  view("4")
+  count(mood)
 
 #Now let's clean the Age column 
 #The problem here is that "-days" is added to some obs
@@ -126,37 +123,6 @@ cb_mood %>%
          ID2 = str_replace(Cloudbuddy, "\\D+", "")) %>% 
   view()
 
-#Next problem: the number of leading zeros
-#Single digit non-zeros in ID should have two leading zeros
-#We use regex "look around" to find zeros followed by non-zero
-#regex "followed by" -> a(?=b); finds "a" if followed by "b"
-#The * quantifier -> zero or more times
-cb_mood %>% 
-  mutate(mood = str_to_lower(mood),
-         mood = str_replace(mood, "medium", "neutral"),
-         mood = str_replace(mood, ".+happy", "very happy"),
-         mood = str_replace(mood, ".+sad", "very sad"),
-         Age = str_replace(Age, "\\D+", ""),
-         Age = as.numeric(Age),
-         ID2 = str_replace(Cloudbuddy, "\\D+", ""),
-         ID3 = str_replace(ID2, "0*(?=[1-9])", "00")) %>% 
-  view()
-
-#The code above also added two zeros to IDs with two non-zeros
-#Fix by finding zeros followed by two digits 
-#Replace with one zero
-cb_mood %>% 
-  mutate(mood = str_to_lower(mood),
-         mood = str_replace(mood, "medium", "neutral"),
-         mood = str_replace(mood, ".+happy", "very happy"),
-         mood = str_replace(mood, ".+sad", "very sad"),
-         Age = str_replace(Age, "\\D+", ""),
-         Age = as.numeric(Age),
-         ID2 = str_replace(Cloudbuddy, "\\D+", ""),
-         ID3 = str_replace(ID2, "0*(?=[1-9])", "00"),
-         ID4 = str_replace(ID3, "0*(?=\\d{2})", "0")) %>% 
-  view()
-
 #Now add the "cbID-" part to the ID
 #Use str_c() for this.
 cb_mood %>% 
@@ -167,9 +133,7 @@ cb_mood %>%
          Age = str_replace(Age, "\\D+", ""),
          Age = as.numeric(Age),
          ID2 = str_replace(Cloudbuddy, "\\D+", ""),
-         ID3 = str_replace(ID2, "0*(?=[1-9])", "00"),
-         ID4 = str_replace(ID3, "0*(?=\\d{2})", "0"),
-         ID5 = str_c("cbID-", ID4)) %>% 
+         ID3 = str_c("cbID-", ID2)) %>% 
   view()
 
 #Select, rename and save as object
@@ -181,12 +145,20 @@ cb_mood_clean <- cb_mood %>%
          Age = str_replace(Age, "\\D+", ""),
          Age = as.numeric(Age),
          ID2 = str_replace(Cloudbuddy, "\\D+", ""),
-         ID3 = str_replace(ID2, "0*(?=[1-9])", "00"),
-         ID4 = str_replace(ID3, "0*(?=\\d{2})", "0"),
-         ID5 = str_c("cbID-", ID4)) %>% 
-  select(mood, Age, ID5) %>% 
+         ID3 = str_c("cbID-", ID2)) %>% 
+  select(mood, Age, ID3) %>% 
   rename(Age_in_days = Age, 
-         Cloudbuddy = ID5)
+         Cloudbuddy = ID3)
+
+#Use case_when (and mutate) to change how levels are labeled
+#Works like multiple ifelse() statements
+#Here converting mood to numeric
+cb_mood_clean %>% 
+  mutate(mood_num = case_when(mood == "very sad" ~ 1,
+                              mood == "sad" ~ 2,
+                              mood == "neutral" ~ 3,
+                              mood == "happy" ~ 4,
+                              mood == "very happy" ~ 5))
 
 #What if we wanted to look at how Volume varies with mood?
 #We need to combine (join) cb_data and cb_mood_clean
