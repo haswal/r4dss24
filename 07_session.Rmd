@@ -1,6 +1,6 @@
 ---
 title: "Session 7"
-date: September 7, 2023
+date: September 19, 2024
 output: html_document
 ---
 
@@ -17,26 +17,26 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Script
 
-Download the session 7 script by clicking the link below.
+<!-- Download the session 7 script by clicking the link below. -->
 
-<!-- to add scripts -->
-
-
-```{r, include = FALSE, eval = FALSE}
-
-# install and load these packages
-devtools::install_github('yihui/xfun')
-
-# embed_file() requires a few more packages
-xfun::pkg_load2(c('base64enc', 'htmltools', 'mime'))
-```
+<!-- <!-- to add scripts --> -->
 
 
+<!-- ```{r, include = FALSE, eval = FALSE} -->
 
-```{r echo=FALSE}
-# a embed single file
-xfun::embed_file('session_07.R')
-```
+<!-- # install and load these packages -->
+<!-- devtools::install_github('yihui/xfun') -->
+
+<!-- # embed_file() requires a few more packages -->
+<!-- xfun::pkg_load2(c('base64enc', 'htmltools', 'mime')) -->
+<!-- ``` -->
+
+
+
+<!-- ```{r echo=FALSE} -->
+<!-- # a embed single file -->
+<!-- xfun::embed_file('session_07.R') -->
+<!-- ``` -->
 
 
 ## Cheatsheets
@@ -51,7 +51,7 @@ Content for session 7 will be based off of chapters 13 and 14 in the R4DS textbo
 
 Learning regular expressions (regex) is a bit challenging and therefore having good learning tools is important. The strings chapter the textbook is a good start, but I find it best to practice regex using interactive online tools. This link is a good resource and will teach you regex basics as well as let you practice interactively (I visit this site occasionally and learn something new every time): [https://regexone.com](https://regexone.com)
 
-Several gamified versions of regex learning tools are available online. [Here](https://regexcrossword.com) is a link to a collection of regex crossword puzzles. 
+Several game type versions of regex learning tools are available online. [Here](https://regexcrossword.com) is a link to a collection of regex crossword puzzles. 
 
 ## Homework Exercises
 
@@ -68,13 +68,13 @@ cb_data <- read_xlsx(path = "CB_data_2023.xlsx",
 
 1. What does `str_wrap` do? Can you show how it works by first creating a ggplot and giving it a long title? 
 
-1. During the Thursday session I showed you have to use `$` as way to specify the end of a string in regex. But what if you want to match a `$` character? For example, how do you remove the `$` in the string `$1200`. The answer can be found [here](https://stackoverflow.com/questions/27721008/how-do-i-deal-with-special-characters-like-in-my-regex). Use `str_replace()` to give it a try. 
+1. During the Thursday session we showed you have to use `$` as a way to specify the end of a string in regex. But what if you want to match a `$` character? For example, how do you remove the `$` in the string `$1200`. The answer can be found [here](https://stackoverflow.com/questions/27721008/how-do-i-deal-with-special-characters-like-in-my-regex). Use `str_replace()` to give it a try. 
 
 1. Go through the regex crossword tutorial found [here](https://regexcrossword.com/tutorial/1) (5 exercises) and then solve the beginner crosswords at [https://regexcrossword.com/challenges/beginner](https://regexcrossword.com/challenges/beginner).
 
 1. When would you use `str_replace_all()` instead of `str_replace()`?
  
-1. Install and load the `babynames` [package](https://github.com/hadley/babynames) and use your data science skills to investigate a few different (at least two) naming trends over time. Below is an example where I look at the proportion of babies given a name starting with **Ha** (yes, as in Hasse) over the years. 
+1. Install and load the `babynames` [package](https://github.com/hadley/babynames) and use your data science skills to investigate a few different (at least two) naming trends over time. Below is an example where we look at the proportion of babies given a name starting with **Ha** (yes, as in Hasse) over the years. 
 
     ```{r message=FALSE, warning=FALSE}
     library(babynames)
@@ -93,7 +93,7 @@ cb_data <- read_xlsx(path = "CB_data_2023.xlsx",
        scale_y_continuous(labels = scales::percent)
     ```
 
-1. Copy and paste the tribbles below into your own script to answer the following three questions. 
+1. Copy and paste the tribbles below into your own script to answer the following three questions. You can read more about tibbles and tribbles, and how to create a new data frame in R, in chapter 10 of the R4DS textbook.  
     ```{r superheroes, echo = TRUE, eval = TRUE}
     
     superheroes <- tibble::tribble(
@@ -121,18 +121,35 @@ publisher_info <- tibble::tribble(
     b. Merge the two datasets, keeping all observations from the `publisher_info` dataset. How does `join` handle duplicate keys in this case?
     
 
-    c. Merge the two datasets, ensuring that no observations are dropped.   
+    c. Merge the two datasets, ensuring that no observations are dropped. 
     
-1. Aiden and Sarah have given us a real data example from the imaging lab to practice string cleaning using the `stringr` package. Out of an abundance of caution, the data will be sent via Slack instead of uploaded here, because the data includes real IDs. Your job is to do two things: first make edits so that all digit parts of the IDs are separated by the same type of character. Second, some IDs have a four digit time tag. Please remove this tag so that the IDs become more consistent. 
+1. During the Thursday session we showed you how to turn a character variable (mood) into a numeric likert-scale type variable, using the `case_when()` function. Convert `Phase (color)` to a numeric variable using either `case_when()` or one of the `str_*()` functions, and investigate if mood and phase are correlated. When figuring out how to calculate the correlation within `summarise()`, [this link](https://www.statology.org/correlation-by-group-in-r/) might be helpful (but think about if the grouping is necessary in this case).    
 
-1. As we talked about during the Thursday session, the variables used to connect each pair of tables when joining are called keys. A key is a variable (or set of variables) that uniquely identifies an observation. In simple cases, a single variable is sufficient to identify an observation. In other cases, multiple variables may be needed (in the Cloudbuddy data for example, we need to use both `Cloudbuddy` and `Age_in_days` to uniquely identify each observation). Find the keys in the following datasets:
+<br>
 
-    * `Lahman::Batting`
-    * `babynames::babynames`
-    * `nasaweather::atmos`
-    * `fueleconomy::vehicles`
-    * `ggplot2::diamonds`
+<style>
+div.alert {
+background-color: #738DB1;
+border: 1px solid black;
+}
+
+</style>
+
+
+<div class="alert alert-info">
+For the next set of exercises, we will again use real data from Marcus (sent via Slack). One of the data sets is from the neuro-imaging lab (more info below). We are also going to work with both ADOS-derived classifications and subsequent clinician's best estimates (CBEs) of diagnostic outcome. To do so, you will need to reference two data sets: `ADOS_HW7.xlsx` and `CBE_HW7.xlsx`.
+</div>
+
+
+8. Aiden and Sarah have given us a real data example from the imaging lab to practice string cleaning using the `stringr` package. The data will be sent via Slack (`PNC_ScanIDs_r4dss.xlsx`). Your job is to do two things: first make edits so that all digit parts of the IDs are separated by the same type of character. Second, some IDs have a four digit time tag. Please remove this tag so that the IDs become more consistent.
+
+9. Starting with the `CBE` data set, you may notice that the `Likelihood` column includes values that use the term "low-risk". Start by changing these values to "low-likelihood". Then, remove the subsequent characters (after low-likelihood) using `str_replace()` and regex.
     
-    <br>
-    
-    (You might need to install some packages and read some documentation)
+10. Join the `ADOS` and `CBE` data sets, using the individual identifiers as your key. You may need to use `dplyr` and `stringr` functions to rename columns and/or match the structure of each individual identifier before joining the two data frames. Join in a way so that the information in the `CBE` data is added to `ADOS`.
+
+11. Let's evaluate how our data sets overlap. Use the `inner_join()` function to identify all of the participants found in both the `ADOS` data and the `CBE` data. How many of these individuals have more than one observation in the data? Can you figure out how to use the `distinct()` function to remove duplicated obs so that you get an accurate count of the number of individuals in the `ADOS` data that are also in the `CBE` data? 
+
+12. You want to remove all individuals with a CBE of developmental delay ("dev-delay") from your ADOS data set, so as to not confound your binary TD/ASD classification outcomes. First, use `filter()` to keep only individuals with a CBE of "dev-delay" and create an object called `CBE_dev_delay` that stores these individuals. Then, use `anti_join()` to return the `ADOS` data set without any of the individuals in `CBE_dev_delay`.
+
+    How do the mean Social and RRB subscale scores change when you calculate them with versus without individuals who later received a CBE of developmental delay?
+
