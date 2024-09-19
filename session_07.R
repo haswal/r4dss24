@@ -51,6 +51,7 @@ cb_mood %>%
   view()
 
 #Time to do some cleaning! We will start with the mood column
+#count(mood) the same as group_by(mood) %>% count()
 cb_mood %>% 
   count(mood)
 
@@ -150,7 +151,7 @@ cb_mood_clean <- cb_mood %>%
   rename(Age_in_days = Age, 
          Cloudbuddy = ID3)
 
-#Use case_when (and mutate) to change how levels are labeled
+#Use case_when (and mutate) to change how levels are "labeled"
 #Works like multiple ifelse() statements
 #Here converting mood to numeric
 cb_mood_clean %>% 
@@ -169,15 +170,20 @@ cb_mood_clean %>%
 
 cb_mood_clean %>% 
   count(Cloudbuddy, Age_in_days) %>% 
-  filter(n > 1)
+  view()
 
-#inner_join() only keeps obs from x that have a matching key in y
+#inner_join() keeps obs from x that have a matching key in y
 #Join will by default use variable(s) found in both sets as key 
 cb_data %>% 
   inner_join(cb_mood_clean) %>% 
   view()
 
-#left_join keeps all observations in x (this is the go-to join)
+cb_data %>% 
+  inner_join(cb_mood_clean) %>% 
+  group_by(mood) %>% 
+  summarise(mean(Volume, na.rm = TRUE))
+
+#left_join keeps all observations in x (this is the join I use most)
 cb_data %>% 
   left_join(cb_mood_clean) %>% 
   view()
